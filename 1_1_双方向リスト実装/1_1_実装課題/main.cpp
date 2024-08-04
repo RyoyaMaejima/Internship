@@ -30,7 +30,7 @@ public:
     // ƒm[ƒh‚ğ’Ç‰Á‚·‚é
     void append(int score, std::string& username) {
         Node* newNode = new Node(score, username);
-        
+
         // æ“ª‚ª–³‚¯‚ê‚Îæ“ª‚ğì¬‚·‚é
         if (!head) {
             head = tail = newNode;
