@@ -1,9 +1,5 @@
-//
-// pch.cpp
-//
-
 #include "pch.h"
-#include <string>
+#include "DoublyLinkedList.h"
 
 /**
  * @brief ノードのコンストラクタ

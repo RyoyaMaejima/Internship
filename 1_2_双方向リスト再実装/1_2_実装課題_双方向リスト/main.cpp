@@ -1,7 +1,5 @@
-#include "pch.h"
-#include <iostream>
+#include "DoublyLinkedList.h"
 #include <fstream>
-#include <string>
 
 int main() {
     DoublyLinkedList list;
