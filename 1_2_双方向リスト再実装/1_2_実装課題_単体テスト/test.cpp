@@ -370,7 +370,7 @@ namespace ex01_DataStructure {
         *//***********************************************************************************/
         TEST(BeginIteratorTest, TestBeginWhenEmptyConst) {
             DoublyLinkedList list;
-            DoublyLinkedList::ConstIterator cit(nullptr);
+            DoublyLinkedList::Iterator cit(nullptr);
             cit = list.GetBegin();
             EXPECT_EQ(cit, list.GetEnd());
         }

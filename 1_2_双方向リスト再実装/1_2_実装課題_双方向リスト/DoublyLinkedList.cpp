@@ -80,7 +80,8 @@ DoublyLinkedList::Iterator::Iterator(Node* node) : ConstIterator(node) {}
  * @return データへの参照
  */
 ResultData& DoublyLinkedList::Iterator::operator*() {
-    return this->current->data;
+    if (!current) throw std::exception();
+    return current->data;
 }
 
 /**
