@@ -42,12 +42,13 @@ public:
     class ConstIterator {
     public:
         Node* current;  /**< 現在のノード */
+        const DoublyLinkedList* list; /**< 所属リストへのポインタ */
 
         /**
          * @brief コンストラクタ
          * @param node 現在のノード
          */
-        ConstIterator(Node* node);
+        ConstIterator(Node* node, const DoublyLinkedList* list);
 
         /**
          * @brief コピーコンストラクタ
@@ -61,9 +62,19 @@ public:
         void operator--();
 
         /**
+        * @brief リストの先頭に向かって一つ進める
+        */
+        ConstIterator operator--(int);
+
+        /**
          * @brief リストの末尾に向かって一つ進める
          */
         void operator++();
+
+        /**
+         * @brief リストの末尾に向かって一つ進める
+         */
+        ConstIterator operator++(int);
 
         /**
          * @brief イテレータの指す要素を取得する
@@ -101,7 +112,7 @@ public:
          * @brief コンストラクタ
          * @param node 現在のノード
          */
-        Iterator(Node* node);
+        Iterator(Node* node, const DoublyLinkedList* list);
 
         /**
          * @brief イテレータの指す要素を取得する
@@ -133,11 +144,6 @@ public:
      * @param iter 削除する位置のイテレータ
      */
     bool Erase(const Iterator& iter);
-
-    /**
-     * @brief データの中身の表示
-     */
-    void PrintList() const;
 
     /**
      * @brief リストの先頭イテレータを取得する

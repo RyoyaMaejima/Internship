@@ -11,20 +11,29 @@ DoublyLinkedList::Node::Node(const ResultData& rd) : data(rd), prev(nullptr), ne
  * @brief ConstIteratorクラスのコンストラクタ
  * @param node 現在のノード
  */
-DoublyLinkedList::ConstIterator::ConstIterator(Node* node) : current(node) {}
+DoublyLinkedList::ConstIterator::ConstIterator(Node* node, const DoublyLinkedList* list) : current(node), list(list) {}
 
 /**
 * @brief コピーコンストラクタ
 * @param other 他のイテレータ
 */
-DoublyLinkedList::ConstIterator::ConstIterator(const ConstIterator& other) : current(other.current) {}
+DoublyLinkedList::ConstIterator::ConstIterator(const ConstIterator& other) : current(other.current), list(other.list) {}
 
 /**
  * @brief リストの先頭に向かって一つ進める
  */
 void DoublyLinkedList::ConstIterator::operator--() {
     if (current) current = current->prev;
-    else throw std::exception();
+    else exit(1);
+}
+
+/**
+ * @brief リストの先頭に向かって一つ進める
+ */
+DoublyLinkedList::ConstIterator DoublyLinkedList::ConstIterator::operator--(int) {
+    ConstIterator temp = *this;
+    --(*this);
+    return temp;
 }
 
 /**
@@ -32,7 +41,16 @@ void DoublyLinkedList::ConstIterator::operator--() {
  */
 void DoublyLinkedList::ConstIterator::operator++() {
     if (current) current = current->next;
-    else throw std::exception();
+    else exit(1);
+}
+
+/**
+ * @brief リストの末尾に向かって一つ進める
+ */
+DoublyLinkedList::ConstIterator DoublyLinkedList::ConstIterator::operator++(int) {
+    ConstIterator temp = *this;
+    ++(*this);
+    return temp;
 }
 
 /**
@@ -40,8 +58,8 @@ void DoublyLinkedList::ConstIterator::operator++() {
  * @return 成績データへの定数参照
  */
 const ResultData& DoublyLinkedList::ConstIterator::operator*() const {
-    if (!current) throw std::exception();
-    return current->data;
+    if (current) return current->data;
+    else exit(1);
 }
 
 /**
@@ -74,15 +92,15 @@ bool DoublyLinkedList::ConstIterator::operator!=(const ConstIterator& other) con
  * @brief Iteratorクラスのコンストラクタ
  * @param node 現在のノード
  */
-DoublyLinkedList::Iterator::Iterator(Node* node) : ConstIterator(node) {}
+DoublyLinkedList::Iterator::Iterator(Node* node, const DoublyLinkedList* list) : ConstIterator(node, list) {}
 
 /**
  * @brief イテレータの指す要素を取得する
  * @return データへの参照
  */
 ResultData& DoublyLinkedList::Iterator::operator*() {
-    if (!current) throw std::exception();
-    return current->data;
+    if (current) return current->data;
+    else exit(1);
 }
 
 /**
@@ -102,10 +120,13 @@ int DoublyLinkedList::GetDataNum() const {
  * @brief データの挿入
  * @param iter 挿入位置のイテレータ
  * @param data 挿入するデータ
+ * @return 挿入が成功すればtrue、失敗すればfalse
  */
 bool DoublyLinkedList::Insert(const Iterator& iter, const ResultData& data) {
     Node* newNode = new Node(data);
     Node* current = iter.current;
+
+    if (iter.list != this) return false;
 
     if (current == nullptr) {
         if (tail == nullptr) {
@@ -137,11 +158,12 @@ bool DoublyLinkedList::Insert(const Iterator& iter, const ResultData& data) {
 /**
  * @brief データの削除
  * @param iter 削除する位置のイテレータ
+ * @return 削除が成功すればtrue、失敗すればfalse
  */
 bool DoublyLinkedList::Erase(const Iterator& iter) {
     Node* current = iter.current;
 
-    if (current == nullptr) return false;
+    if (current == nullptr || iter.list != this) return false;
 
     if (current->prev) {
         current->prev->next = current->next;
@@ -164,23 +186,11 @@ bool DoublyLinkedList::Erase(const Iterator& iter) {
 }
 
 /**
-* @brief データの中身の表示
-*/
-void DoublyLinkedList::PrintList() const {
-    Node* current = head;
-
-    while (current) {
-        std::cout << current->data.score << "\t" << current->data.username << std::endl;
-        current = current->next;
-    }
-}
-
-/**
  * @brief 先頭イテレータ取得
  * @return 先頭イテレータ
  */
 DoublyLinkedList::Iterator DoublyLinkedList::GetBegin() {
-    return Iterator(head);
+    return Iterator(head, this);
 }
 
 /**
@@ -188,7 +198,7 @@ DoublyLinkedList::Iterator DoublyLinkedList::GetBegin() {
  * @return 先頭コンストイテレータ
  */
 DoublyLinkedList::ConstIterator DoublyLinkedList::GetBegin() const {
-    return ConstIterator(head);
+    return ConstIterator(head, this);
 }
 
 /**
@@ -196,7 +206,7 @@ DoublyLinkedList::ConstIterator DoublyLinkedList::GetBegin() const {
  * @return 末尾イテレータ
  */
 DoublyLinkedList::Iterator DoublyLinkedList::GetEnd() {
-    return Iterator(nullptr);
+    return Iterator(nullptr, this);
 }
 
 /**
@@ -204,7 +214,7 @@ DoublyLinkedList::Iterator DoublyLinkedList::GetEnd() {
  * @return 末尾コンストイテレータ
  */
 DoublyLinkedList::ConstIterator DoublyLinkedList::GetEnd() const {
-    return ConstIterator(nullptr);
+    return ConstIterator(nullptr, this);
 }
 
 /**

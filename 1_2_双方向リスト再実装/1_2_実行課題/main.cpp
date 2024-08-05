@@ -1,3 +1,4 @@
+#include "pch.h"
 #include "DoublyLinkedList.h"
 #include <fstream>
 
@@ -24,7 +25,11 @@ int main() {
     }
 
     // リストの中身を表示
-    list.PrintList();
+    DoublyLinkedList::Iterator it = list.GetBegin();
+    while (it.current) {
+        std::cout << (*it).score << "\t" << (*it).username << std::endl;
+        ++it;
+    }
 
     // ファイルを閉じる
     file.close();

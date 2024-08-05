@@ -113,6 +113,21 @@ namespace ex01_DataStructure {
             EXPECT_EQ(0, list.GetDataNum());
         }
 
+        /**********************************************************************************//**
+            @brief		データ数の取得機能について、constのメソッドであるかのテスト
+            @details	ID:リスト-8(手動)\n
+                        constのメソッドであるかを確認しています。\n
+                        有効にしてコンパイルが通れば成功です。\n
+        *//***********************************************************************************/
+        TEST(GetDataNumTest, TestGetDataNumWhenConst)
+        {
+#if defined TT_TEST_GET_DATA_NUM_WHEN_CONST
+            const DoublyLinkedList list;
+            EXPECT_EQ(0, list.GetDataNum());
+#endif //TT_TEST_GET_DATA_NUM_WHEN_CONST
+            SUCCEED();
+        }
+
         //=================================== データの挿入 ===================================
 
         /**********************************************************************************//**
@@ -170,6 +185,15 @@ namespace ex01_DataStructure {
             ++it;
             bool success = list.Insert(it, rd2);
             EXPECT_TRUE(success);
+            it = list.GetBegin();
+            EXPECT_EQ(rd.score, (*it).score);
+            EXPECT_EQ(rd.username, (*it).username);
+            ++it;
+            EXPECT_EQ(rd2.score, (*it).score);
+            EXPECT_EQ(rd2.username, (*it).username);
+            ++it;
+            EXPECT_EQ(rd1.score, (*it).score);
+            EXPECT_EQ(rd1.username, (*it).username);
         }
 
         /**********************************************************************************//**
@@ -178,11 +202,12 @@ namespace ex01_DataStructure {
                         コンストイテレータを指定して挿入した際の挙動を確認しています。\n
                         挿入が正常に行われれば成功です。\n
         *//***********************************************************************************/
-        TEST(InsertTest, TestInsertConst) {
+        TEST(InsertTest, TestInsertWhenConst) {
             DoublyLinkedList list;
             DoublyLinkedList::ConstIterator cit = list.GetBegin();
-            DoublyLinkedList::Iterator it(nullptr);
+            DoublyLinkedList::Iterator it(nullptr, nullptr);
             it.current = cit.current;
+            it.list = cit.list;
             bool success = list.Insert(it, rd);
             EXPECT_TRUE(success);
         }
@@ -194,7 +219,28 @@ namespace ex01_DataStructure {
                         挿入が正常に行われれなければ成功です。\n
         *//***********************************************************************************/
         TEST(InsertTest, TestInsertInvalid) {
-            // 挿入失敗はメモリ確保失敗時のためスキップ
+            DoublyLinkedList list1;
+            list1.Insert(list1.GetEnd(), rd);
+            DoublyLinkedList list2;
+            list2.Insert(list2.GetEnd(), rd1);
+            DoublyLinkedList::Iterator it = list2.GetBegin();
+            bool success = list1.Insert(it, rd2);
+            EXPECT_TRUE(!success);
+        }
+
+        /**********************************************************************************//**
+            @brief		リストのデータ追加について、非constが保障されているかのテスト
+            @details	ID:リスト-15(手動)\n
+                        非constが保障されているかを確認しています。\n
+                        有効にしてコンパイルエラーになれば成功です。\n
+        *//***********************************************************************************/
+        TEST(ListManualTest, TestInsertWhenConst)
+        {
+#if defined TT_TEST_INSERT_WHEN_CONST
+            const DoublyLinkedList list;
+            list.Insert(list.GetEnd(), rd);
+#endif //TT_TEST_INSERT_WHEN_CONST
+            SUCCEED();
         }
 
         //=================================== データの削除 ===================================
@@ -247,7 +293,7 @@ namespace ex01_DataStructure {
                         先頭でも末尾でもないイテレータを渡して削除した際の挙動を確認しています。\n
                         削除が正常に行われれば成功です。\n
         *//***********************************************************************************/
-        TEST(EraseTest, TestInsert) {
+        TEST(EraseTest, TestErase) {
             DoublyLinkedList list;
             list.Insert(list.GetEnd(), rd);
             list.Insert(list.GetEnd(), rd1);
@@ -263,12 +309,13 @@ namespace ex01_DataStructure {
                         コンストイテレータを指定して削除した際の挙動を確認しています。\n
                         削除が正常に行われれば成功です。\n
         *//***********************************************************************************/
-        TEST(EraseTest, TestInsertConst) {
+        TEST(EraseTest, TestEraseWhenConst) {
             DoublyLinkedList list;
             list.Insert(list.GetEnd(), rd);
             DoublyLinkedList::ConstIterator cit = list.GetBegin();
-            DoublyLinkedList::Iterator it(nullptr);
+            DoublyLinkedList::Iterator it(nullptr, nullptr);
             it.current = cit.current;
+            it.list = cit.list;
             bool success = list.Erase(it);
             EXPECT_TRUE(success);
         }
@@ -279,297 +326,357 @@ namespace ex01_DataStructure {
                         不正なイテレータを渡して削除した際の挙動を確認しています。\n
                         削除が正常に行われれなければ成功です。\n
         *//***********************************************************************************/
-        TEST(EraseTest, TestInsertInvalid) {
-            DoublyLinkedList list;
-            DoublyLinkedList::Iterator it(nullptr);
-            bool success = list.Erase(it);
+        TEST(EraseTest, TestEraseInvalid) {
+            DoublyLinkedList list1;
+            list1.Insert(list1.GetEnd(), rd);
+            DoublyLinkedList list2;
+            list2.Insert(list2.GetEnd(), rd1);
+            DoublyLinkedList::Iterator it = list2.GetBegin();
+            bool success = list1.Erase(it);
             EXPECT_TRUE(!success);
+        }
+
+        /**********************************************************************************//**
+            @brief		リストのデータ削除について、非constが保障されているかのテスト
+            @details	ID:リスト-22(手動)\n
+                        非constが保障されているかを確認しています。\n
+                        有効にしてコンパイルエラーになれば成功です。\n
+        *//***********************************************************************************/
+        TEST(ListManualTest, TestEraseWhenConst)
+        {
+#if defined TT_TEST_ERASE_WHEN_CONST
+            const DoublyLinkedList list;
+            list.Insert(list.GetEnd(), rd);
+            list.Erase(list.GetEnd());
+#endif //TT_TEST_ERASE_WHEN_CONST
+            SUCCEED();
         }
 
         //=================================== 先頭イテレータの取得 ===================================
 
         /**********************************************************************************//**
-            @brief      リストの先頭イテレータ取得のテスト
+            @brief      リストが空である場合に、呼び出した際の挙動テスト
             @details    ID:リスト-23\n
                         リストの先頭イテレータ取得のテストです。\n
-                        リストが空である場合に、先頭イテレータの取得が正常に行われれば成功です。\n
+                        先頭イテレータの取得が正常に行われれば成功です。\n
         *//***********************************************************************************/
         TEST(BeginIteratorTest, TestBeginWhenEmpty) {
             DoublyLinkedList list;
-            DoublyLinkedList::Iterator it(nullptr);
-            it = list.GetBegin();
+            DoublyLinkedList::Iterator it = list.GetBegin();
             EXPECT_EQ(it, list.GetEnd());
         }
 
         /**********************************************************************************//**
-            @brief      リストの先頭イテレータ取得のテスト
+            @brief      リストに要素が一つある場合に、呼び出した際の挙動テスト
             @details    ID:リスト-24\n
-                        リストに要素が一つある場合に、先頭イテレータの取得が正常に行われれば成功です。\n
+                        先頭イテレータの取得が正常に行われれば成功です。\n
         *//***********************************************************************************/
         TEST(BeginIteratorTest, TestBeginWhenOneElement) {
             DoublyLinkedList list;
             list.Insert(list.GetEnd(), rd);
-            DoublyLinkedList::Iterator it(nullptr);
-            it = list.GetBegin();
+            DoublyLinkedList::Iterator it = list.GetBegin();
             EXPECT_EQ(rd.score, (*it).score);
             EXPECT_EQ(rd.username, (*it).username);
         }
 
         /**********************************************************************************//**
-            @brief      リストの先頭イテレータ取得のテスト
+            @brief      リストに二つ以上の要素がある場合に、呼び出した際の挙動テスト
             @details    ID:リスト-25\n
-                        リストに二つ以上の要素がある場合に、先頭イテレータの取得が正常に行われれば成功です。\n
+                        先頭イテレータの取得が正常に行われれば成功です。\n
         *//***********************************************************************************/
         TEST(BeginIteratorTest, TestBeginWhenMultipleElements) {
             DoublyLinkedList list;
             list.Insert(list.GetEnd(), rd);
             list.Insert(list.GetEnd(), rd1);
-            DoublyLinkedList::Iterator it(nullptr);
-            it = list.GetBegin();
+            DoublyLinkedList::Iterator it = list.GetBegin();
             EXPECT_EQ(rd.score, (*it).score);
             EXPECT_EQ(rd.username, (*it).username);
         }
 
         /**********************************************************************************//**
-            @brief      リストの先頭イテレータ取得のテスト
+            @brief      データの挿入を行った後に、呼び出した際の挙動テスト
             @details    ID:リスト-26\n
-                        データの挿入を行った後に、先頭イテレータの取得が正常に行われれば成功です。\n
+                        先頭イテレータの取得が正常に行われれば成功です。\n
         *//***********************************************************************************/
         TEST(BeginIteratorTest, TestBeginAfterInsert) {
             DoublyLinkedList list;
             list.Insert(list.GetEnd(), rd);
-            DoublyLinkedList::Iterator it(nullptr);
-            it = list.GetBegin();
+            DoublyLinkedList::Iterator it = list.GetBegin();
             EXPECT_EQ(rd.score, (*it).score);
             EXPECT_EQ(rd.username, (*it).username);
         }
 
         /**********************************************************************************//**
-            @brief      リストの先頭イテレータ取得のテスト
+            @brief      データの削除を行った後に、呼び出した際の挙動テスト
             @details    ID:リスト-27\n
-                        データの削除を行った後に、先頭イテレータの取得が正常に行われれば成功です。\n
+                        先頭イテレータの取得が正常に行われれば成功です。\n
         *//***********************************************************************************/
         TEST(BeginIteratorTest, TestBeginAfterErase) {
             DoublyLinkedList list;
             list.Insert(list.GetEnd(), rd);
             list.Insert(list.GetEnd(), rd1);
             list.Erase(list.GetBegin());
-            DoublyLinkedList::Iterator it(nullptr);
-            it = list.GetBegin();
+            DoublyLinkedList::Iterator it = list.GetBegin();
             EXPECT_EQ(rd1.score, (*it).score);
             EXPECT_EQ(rd1.username, (*it).username);
+        }
+
+        /**********************************************************************************//**
+            @brief		リストの先頭イテレータ取得について、constのリストからIteratorの取得が行えないかのテスト
+            @details	ID:リスト-28(手動)\n
+                        constのリストからIteratorの取得が行えないかを確認しています。\n
+                        有効にしてコンパイルエラーになれば成功です。\n
+        *//***********************************************************************************/
+        TEST(ListManualTest, TestBeginWhenConst)
+        {
+#if defined TT_TEST_BEGIN_WHEN_CONST
+            const DoublyLinkedList list;
+            DoublyLinkedList::Iterator it = list.GetBegin();
+#endif //TT_TEST_BEGIN_WHEN_CONST
+            SUCCEED();
         }
 
         //=================================== 先頭コンストイテレータの取得 ===================================
 
         /**********************************************************************************//**
-            @brief      リストの先頭コンストイテレータ取得のテスト
+            @brief      リストが空である場合に、呼び出した際の挙動テスト
             @details    ID:リスト-29\n
                         リストの先頭コンストイテレータ取得のテストです。\n
-                        リストが空である場合に、先頭コンストイテレータの取得が正常に行われれば成功です。\n
+                        先頭コンストイテレータの取得が正常に行われれば成功です。\n
         *//***********************************************************************************/
-        TEST(BeginIteratorTest, TestBeginWhenEmptyConst) {
+        TEST(BeginIteratorTest, TestBeginWhenEmptyWhenConst) {
             DoublyLinkedList list;
-            DoublyLinkedList::Iterator cit(nullptr);
-            cit = list.GetBegin();
+            DoublyLinkedList::Iterator cit = list.GetBegin();
             EXPECT_EQ(cit, list.GetEnd());
         }
 
         /**********************************************************************************//**
-            @brief      リストの先頭コンストイテレータ取得のテスト
+            @brief      リストに要素が一つある場合に、呼び出した際の挙動テスト
             @details    ID:リスト-30\n
-                        リストに要素が一つある場合に、先頭コンストイテレータの取得が正常に行われれば成功です。\n
+                        先頭コンストイテレータの取得が正常に行われれば成功です。\n
         *//***********************************************************************************/
-        TEST(BeginIteratorTest, TestBeginWhenOneElementConst) {
+        TEST(BeginIteratorTest, TestBeginWhenOneElementWhenConst) {
             DoublyLinkedList list;
             list.Insert(list.GetEnd(), rd);
-            DoublyLinkedList::ConstIterator cit(nullptr);
-            cit = list.GetBegin();
+            DoublyLinkedList::ConstIterator cit = list.GetBegin();
             EXPECT_EQ(rd.score, (*cit).score);
             EXPECT_EQ(rd.username, (*cit).username);
         }
 
         /**********************************************************************************//**
-            @brief      リストの先頭コンストイテレータ取得のテスト
+            @brief      リストに二つ以上の要素がある場合に、呼び出した際の挙動テスト
             @details    ID:リスト-31\n
-                        リストに二つ以上の要素がある場合に、先頭コンストイテレータの取得が正常に行われれば成功です。\n
+                        先頭コンストイテレータの取得が正常に行われれば成功です。\n
         *//***********************************************************************************/
-        TEST(BeginIteratorTest, TestBeginWhenMultipleElementsConst) {
+        TEST(BeginIteratorTest, TestBeginWhenMultipleElementsWhenConst) {
             DoublyLinkedList list;
             list.Insert(list.GetEnd(), rd);
             list.Insert(list.GetEnd(), rd1);
-            DoublyLinkedList::ConstIterator cit(nullptr);
-            cit = list.GetBegin();
+            DoublyLinkedList::ConstIterator cit = list.GetBegin();
             EXPECT_EQ(rd.score, (*cit).score);
             EXPECT_EQ(rd.username, (*cit).username);
         }
 
         /**********************************************************************************//**
-            @brief      リストの先頭コンストイテレータ取得のテスト
+            @brief      データの挿入を行った後に、呼び出した際の挙動テスト
             @details    ID:リスト-32\n
-                        データの挿入を行った後に、先頭コンストイテレータの取得が正常に行われれば成功です。\n
+                        先頭コンストイテレータの取得が正常に行われれば成功です。\n
         *//***********************************************************************************/
-        TEST(BeginIteratorTest, TestBeginAfterInsertConst) {
+        TEST(BeginIteratorTest, TestBeginAfterInsertWhenConst) {
             DoublyLinkedList list;
             list.Insert(list.GetEnd(), rd);
-            DoublyLinkedList::ConstIterator cit(nullptr);
-            cit = list.GetBegin();
+            DoublyLinkedList::ConstIterator cit = list.GetBegin();
             EXPECT_EQ(rd.score, (*cit).score);
             EXPECT_EQ(rd.username, (*cit).username);
         }
 
         /**********************************************************************************//**
-            @brief      リストの先頭コンストイテレータ取得のテスト
+            @brief      データの削除を行った後に、呼び出した際の挙動テスト
             @details    ID:リスト-33\n
-                        データの削除を行った後に、先頭コンストイテレータの取得が正常に行われれば成功です。\n
+                        先頭コンストイテレータの取得が正常に行われれば成功です。\n
         *//***********************************************************************************/
-        TEST(BeginIteratorTest, TestBeginAfterEraseConst) {
+        TEST(BeginIteratorTest, TestBeginAfterEraseWhenConst) {
             DoublyLinkedList list;
             list.Insert(list.GetEnd(), rd);
             list.Insert(list.GetEnd(), rd1);
             list.Erase(list.GetBegin());
-            DoublyLinkedList::ConstIterator cit(nullptr);
-            cit = list.GetBegin();
+            DoublyLinkedList::ConstIterator cit = list.GetBegin();;
             EXPECT_EQ(rd1.score, (*cit).score);
             EXPECT_EQ(rd1.username, (*cit).username);
+        }
+
+        /**********************************************************************************//**
+           @brief		リストの先頭イテレータ取得について、constのリストからIteratorの取得が行えるかのテスト
+           @details	ID:リスト-34(手動)\n
+                       constのリストからIteratorの取得が行えないかを確認しています。\n
+                       有効にしてコンパイルが通れば成功です。\n
+       *//***********************************************************************************/
+        TEST(ListManualTest, TestBeginWhenConstWhenConst)
+        {
+#if defined TT_TEST_BEGIN_WHEN_CONST_WHEN_CONST
+            const DoublyLinkedList list;
+            DoublyLinkedList::ConstIterator cit = list.GetBegin();
+#endif //TT_TEST_BEGIN_WHEN_CONST_WHEN_CONST
+            SUCCEED();
         }
 
         //=================================== 末尾イテレータの取得 ===================================
 
         /**********************************************************************************//**
-            @brief      リストの末尾イテレータ取得のテスト
+            @brief      リストが空である場合に、呼び出した際の挙動テスト
             @details    ID:リスト-35\n
                         リストの末尾イテレータ取得のテストです。\n
-                        リストが空である場合に、末尾イテレータの取得が正常に行われれば成功です。\n
+                        末尾イテレータの取得が正常に行われれば成功です。\n
         *//***********************************************************************************/
         TEST(EndIteratorTest, TestEndWhenEmpty) {
             DoublyLinkedList list;
-            DoublyLinkedList::Iterator it(nullptr);
-            it = list.GetEnd();
+            DoublyLinkedList::Iterator it = list.GetEnd();
             EXPECT_EQ(it, list.GetEnd());
         }
 
         /**********************************************************************************//**
-            @brief      リストの末尾イテレータ取得のテスト
+            @brief      リストに要素が一つある場合に、呼び出した際の挙動テスト
             @details    ID:リスト-36\n
-                        リストに要素が一つある場合に、末尾イテレータの取得が正常に行われれば成功です。\n
+                        末尾イテレータの取得が正常に行われれば成功です。\n
         *//***********************************************************************************/
         TEST(EndIteratorTest, TestEndWhenOneElement) {
             DoublyLinkedList list;
             list.Insert(list.GetEnd(), rd);
-            DoublyLinkedList::Iterator it(nullptr);
-            it = list.GetEnd();
+            DoublyLinkedList::Iterator it = list.GetEnd();
             EXPECT_EQ(it, list.GetEnd());
         }
 
         /**********************************************************************************//**
-            @brief      リストの末尾イテレータ取得のテスト
+            @brief      リストに二つ以上の要素がある場合に、呼び出した際の挙動テスト
             @details    ID:リスト-37\n
-                        リストに二つ以上の要素がある場合に、末尾イテレータの取得が正常に行われれば成功です。\n
+                        末尾イテレータの取得が正常に行われれば成功です。\n
         *//***********************************************************************************/
         TEST(EndIteratorTest, TestEndWhenMultipleElements) {
             DoublyLinkedList list;
             list.Insert(list.GetEnd(), rd);
             list.Insert(list.GetEnd(), rd1);
-            DoublyLinkedList::Iterator it(nullptr);
-            it = list.GetEnd();
+            DoublyLinkedList::Iterator it = list.GetEnd();
             EXPECT_EQ(it, list.GetEnd());
         }
 
         /**********************************************************************************//**
-            @brief      リストの末尾イテレータ取得のテスト
+            @brief      データの挿入を行った後に、呼び出した際の挙動テスト
             @details    ID:リスト-38\n
-                        データの挿入を行った後に、末尾イテレータの取得が正常に行われれば成功です。\n
+                        末尾イテレータの取得が正常に行われれば成功です。\n
         *//***********************************************************************************/
         TEST(EndIteratorTest, TestEndAfterInsert) {
             DoublyLinkedList list;
             list.Insert(list.GetEnd(), rd);
-            DoublyLinkedList::Iterator it(nullptr);
-            it = list.GetEnd();
+            DoublyLinkedList::Iterator it = list.GetEnd();
             EXPECT_EQ(it, list.GetEnd());
         }
 
         /**********************************************************************************//**
-            @brief      リストの末尾イテレータ取得のテスト
+            @brief      データの削除を行った後に、呼び出した際の挙動テスト
             @details    ID:リスト-39\n
-                        データの削除を行った後に、末尾イテレータの取得が正常に行われれば成功です。\n
+                        末尾イテレータの取得が正常に行われれば成功です。\n
         *//***********************************************************************************/
         TEST(EndIteratorTest, TestEndAfterErase) {
             DoublyLinkedList list;
             list.Insert(list.GetEnd(), rd);
             list.Erase(list.GetBegin());
-            DoublyLinkedList::Iterator it(nullptr);
-            it = list.GetEnd();
+            DoublyLinkedList::Iterator it = list.GetEnd();
+
             EXPECT_EQ(it, list.GetEnd());
+        }
+
+        /**********************************************************************************//**
+            @brief		リストの末尾イテレータ取得について、constのリストからIteratorの取得が行えないかのテスト
+            @details	ID:リスト-40(手動)\n
+                        constのリストからIteratorの取得が行えないかを確認しています。\n
+                        有効にしてコンパイルエラーになれば成功です。\n
+        *//***********************************************************************************/
+        TEST(ListManualTest, TestEndWhenConst)
+        {
+#if defined TT_TEST_END_WHEN_CONST
+            const DoublyLinkedList list;
+            DoublyLinkedList::Iterator it = list.GetEnd();
+#endif //TT_TEST_END_WHEN_CONST
+            SUCCEED();
         }
 
         //=================================== 末尾コンストイテレータの取得 ===================================
 
         /**********************************************************************************//**
-            @brief      リストの末尾コンストイテレータ取得のテスト
+            @brief      リストが空である場合に、呼び出した際の挙動テスト
             @details    ID:リスト-41\n
                         リストの末尾イテレータ取得のテストです。\n
-                        リストが空である場合に、末尾コンストイテレータの取得が正常に行われれば成功です。\n
+                        末尾コンストイテレータの取得が正常に行われれば成功です。\n
         *//***********************************************************************************/
-        TEST(EndIteratorTest, TestEndWhenEmptyConst) {
+        TEST(EndIteratorTest, TestEndWhenEmptyWhenConst) {
             DoublyLinkedList list;
-            DoublyLinkedList::ConstIterator cit(nullptr);
-            cit = list.GetEnd();
+            DoublyLinkedList::ConstIterator cit = list.GetEnd();
             EXPECT_EQ(cit, list.GetEnd());
         }
 
         /**********************************************************************************//**
-            @brief      リストの末尾コンストイテレータ取得のテスト
+            @brief      リストに要素が一つある場合に、呼び出した際の挙動テスト
             @details    ID:リスト-42\n
-                        リストに要素が一つある場合に、末尾コンストイテレータの取得が正常に行われれば成功です。\n
+                        末尾コンストイテレータの取得が正常に行われれば成功です。\n
         *//***********************************************************************************/
-        TEST(EndIteratorTest, TestEndWhenOneElementConst) {
+        TEST(EndIteratorTest, TestEndWhenOneElementWhenConst) {
             DoublyLinkedList list;
             list.Insert(list.GetEnd(), rd);
-            DoublyLinkedList::ConstIterator cit(nullptr);
-            cit = list.GetEnd();
+            DoublyLinkedList::ConstIterator cit = list.GetEnd();
             EXPECT_EQ(cit, list.GetEnd());
         }
 
         /**********************************************************************************//**
-            @brief      リストの末尾コンストイテレータ取得のテスト
+            @brief      リストに二つ以上の要素がある場合に、呼び出した際の挙動テスト
             @details    ID:リスト-43\n
-                        リストに二つ以上の要素がある場合に、末尾コンストイテレータの取得が正常に行われれば成功です。\n
+                        末尾コンストイテレータの取得が正常に行われれば成功です。\n
         *//***********************************************************************************/
-        TEST(EndIteratorTest, TestEndWhenMultipleElementsConst) {
+        TEST(EndIteratorTest, TestEndWhenMultipleElementsWhenConst) {
             DoublyLinkedList list;
             list.Insert(list.GetEnd(), rd);
             list.Insert(list.GetEnd(), rd1);
-            DoublyLinkedList::ConstIterator cit(nullptr);
-            cit = list.GetEnd();
+            DoublyLinkedList::ConstIterator cit = list.GetEnd();
             EXPECT_EQ(cit, list.GetEnd());
         }
 
         /**********************************************************************************//**
-            @brief      リストの末尾コンストイテレータ取得のテスト
+            @brief      データの挿入を行った後に、呼び出した際の挙動テスト
             @details    ID:リスト-44\n
-                        データの挿入を行った後に、末尾コンストイテレータの取得が正常に行われれば成功です。\n
+                        末尾コンストイテレータの取得が正常に行われれば成功です。\n
         *//***********************************************************************************/
-        TEST(EndIteratorTest, TestEndAfterInsertConst) {
+        TEST(EndIteratorTest, TestEndAfterInsertWhenConst) {
             DoublyLinkedList list;
             list.Insert(list.GetEnd(), rd);
-            DoublyLinkedList::ConstIterator cit(nullptr);
-            cit = list.GetEnd();
+            DoublyLinkedList::ConstIterator cit = list.GetEnd();
             EXPECT_EQ(cit, list.GetEnd());
         }
 
         /**********************************************************************************//**
-            @brief      リストの末尾コンストイテレータ取得のテスト
+            @brief      データの削除を行った後に、呼び出した際の挙動テスト
             @details    ID:リスト-45\n
-                        データの削除を行った後に、末尾コンストイテレータの取得が正常に行われれば成功です。\n
+                        末尾コンストイテレータの取得が正常に行われれば成功です。\n
         *//***********************************************************************************/
-        TEST(EndIteratorTest, TestEndAfterEraseConst) {
+        TEST(EndIteratorTest, TestEndAfterEraseWhenConst) {
             DoublyLinkedList list;
             list.Insert(list.GetEnd(), rd);
             list.Erase(list.GetBegin());
-            DoublyLinkedList::ConstIterator cit(nullptr);
-            cit = list.GetEnd();
+            DoublyLinkedList::ConstIterator cit = list.GetEnd();
             EXPECT_EQ(cit, list.GetEnd());
+        }
+
+        /**********************************************************************************//**
+            @brief		リストの末尾イテレータ取得について、constのリストからIteratorの取得が行えるかのテスト
+            @details	ID:リスト-46(手動)\n
+                        constのリストからIteratorの取得が行えないかを確認しています。\n
+                        有効にしてコンパイルが通れば成功です。\n
+        *//***********************************************************************************/
+        TEST(ListManualTest, TestEndWhenConstWhenConst)
+        {
+#if defined TT_TEST_END_WHEN_CONST_WHEN_CONST
+            const DoublyLinkedList list;
+            DoublyLinkedList::ConstIterator cit = list.GetEnd();
+#endif //TT_TEST_END_WHEN_CONST_WHEN_CONST
+            SUCCEED();
         }
 
         //=================================== イテレータの指す要素を取得する ===================================
@@ -580,8 +687,8 @@ namespace ex01_DataStructure {
                         リストが空または無効な状態で、イテレータから要素を取得した際の挙動を確認しています。\n
         *//***********************************************************************************/
         TEST(IteratorDereferenceTest, TestDereferenceWhenInvalid) {
-            DoublyLinkedList::ConstIterator it(nullptr);
-            EXPECT_THROW(*it, std::exception);
+            DoublyLinkedList::ConstIterator it(nullptr, nullptr);
+            ASSERT_DEATH(*it, ".*");
         }
 
         /**********************************************************************************//**
@@ -600,6 +707,24 @@ namespace ex01_DataStructure {
         }
 
         /**********************************************************************************//**
+            @brief		ConstIteratorから取得した要素に対して、値の代入が行えないかをチェックするテスト
+            @details	ID:イテレータ-2(手動)\n
+                        Iteratorから取得した要素に対して、値の代入が不可能であることを確認しています。\n
+                        有効にしてコンパイルエラーになれば成功です。\n
+        *//***********************************************************************************/
+        TEST(ListManualTest, TestIteratorAssignmentWhenConst)
+        {
+#if defined TT_TEST_ITERATOR_ASSIGNMENT_WHEN_CONST
+            DoublyLinkedList list;
+            list.Insert(list.GetEnd(), rd);
+            DoublyLinkedList::ConstIterator cit = list.GetBegin();
+            (*it).score = 400;
+            (*it).username = "User3";
+#endif //TT_TEST_ITERATOR_ASSIGNMENT_WHEN_CONST
+            SUCCEED();
+        }
+
+        /**********************************************************************************//**
             @brief      リストが空の際の、先頭イテレータに対して呼び出した際の挙動テスト
             @details    ID:イテレータ-3\n
                         リストが空の場合に、先頭イテレータから要素を取得しようとした際の挙動を確認しています。\n
@@ -607,7 +732,7 @@ namespace ex01_DataStructure {
         TEST(IteratorDereferenceTest, TestDereferenceAtBeginWhenEmpty) {
             DoublyLinkedList list;
             DoublyLinkedList::ConstIterator it = list.GetBegin();
-            EXPECT_THROW(*it, std::exception);
+            ASSERT_DEATH(*it, ".*");
         }
 
         /**********************************************************************************//**
@@ -618,7 +743,7 @@ namespace ex01_DataStructure {
         TEST(IteratorDereferenceTest, TestDereferenceAtEnd) {
             DoublyLinkedList list;
             DoublyLinkedList::ConstIterator it = list.GetEnd();
-            EXPECT_THROW(*it, std::exception);
+            ASSERT_DEATH(*it, ".*");
         }
 
         //=================================== イテレータをリストの末尾に向かって一つ進める ===================================
@@ -629,8 +754,8 @@ namespace ex01_DataStructure {
                         リストが空または無効な状態で、イテレータを進めた際の挙動を確認しています。\n
         *//***********************************************************************************/
         TEST(IteratorAdvanceTest, TestAdvanceWhenInvalid) {
-            DoublyLinkedList::Iterator it(nullptr);
-            EXPECT_THROW(++it, std::exception);
+            DoublyLinkedList::Iterator it(nullptr, nullptr);
+            ASSERT_DEATH(++it, ".*");
         }
 
         /**********************************************************************************//**
@@ -641,7 +766,7 @@ namespace ex01_DataStructure {
         TEST(IteratorAdvanceTest, TestAdvanceWhenEmpty) {
             DoublyLinkedList list;
             auto it = list.GetBegin();
-            EXPECT_THROW(++it, std::exception);
+            ASSERT_DEATH(++it, ".*");
         }
 
         /**********************************************************************************//**
@@ -652,7 +777,7 @@ namespace ex01_DataStructure {
         TEST(IteratorAdvanceTest, TestAdvanceAtEnd) {
             DoublyLinkedList list;
             auto it = list.GetEnd();
-            EXPECT_THROW(++it, std::exception);
+            ASSERT_DEATH(++it, ".*");
         }
 
         /**********************************************************************************//**
@@ -666,11 +791,7 @@ namespace ex01_DataStructure {
             list.Insert(list.GetEnd(), rd1);
             auto it = list.GetBegin();
             bool success = false;
-            while (it.current) {
-                success = (*it).score == rd1.score;
-                if (success) break;
-                ++it;
-            }
+            ++it;
             EXPECT_EQ(rd1.score, (*it).score);
             EXPECT_EQ(rd1.username, (*it).username);
         }
@@ -704,7 +825,7 @@ namespace ex01_DataStructure {
             auto it = list.GetBegin();
             EXPECT_EQ(rd.score, (*it).score);
             EXPECT_EQ(rd.username, (*it).username);
-            ++it;
+            it++;
             EXPECT_EQ(rd1.score, (*it).score);
             EXPECT_EQ(rd1.username, (*it).username);
         }
@@ -717,8 +838,8 @@ namespace ex01_DataStructure {
                         リストが空または無効な状態で、イテレータを逆に進めた際の挙動を確認しています。\n
         *//***********************************************************************************/
         TEST(IteratorAdvanceTest, TestBackwardWhenInvalid) {
-            DoublyLinkedList::Iterator it(nullptr);
-            EXPECT_THROW(--it, std::exception);
+            DoublyLinkedList::Iterator it(nullptr, nullptr);
+            ASSERT_DEATH(--it, ".*");
         }
 
         /**********************************************************************************//**
@@ -729,7 +850,7 @@ namespace ex01_DataStructure {
         TEST(IteratorAdvanceTest, TestBackwardFromEndWhenEmpty) {
             DoublyLinkedList list;
             auto it = list.GetEnd();
-            EXPECT_THROW(--it, std::exception);
+            ASSERT_DEATH(--it, ".*");
         }
 
         /**********************************************************************************//**
@@ -740,7 +861,7 @@ namespace ex01_DataStructure {
         TEST(IteratorAdvanceTest, TestBackwardFromBegin) {
             DoublyLinkedList list;
             auto it = list.GetBegin();
-            EXPECT_THROW(--it, std::exception);
+            ASSERT_DEATH(--it, ".*");
         }
 
         /**********************************************************************************//**
@@ -754,12 +875,7 @@ namespace ex01_DataStructure {
             list.Insert(list.GetEnd(), rd1);
             auto it = list.GetBegin();
             ++it;
-            bool success = false;
-            while (it.current) {
-                success = (*it).score == rd.score;
-                if (success) break;
-                --it;
-            }
+            --it;
             EXPECT_EQ(rd.score, (*it).score);
             EXPECT_EQ(rd.username, (*it).username);
         }
@@ -792,15 +908,32 @@ namespace ex01_DataStructure {
             list.Insert(list.GetEnd(), rd);
             list.Insert(list.GetEnd(), rd1);
             auto it = list.GetBegin();
-            ++it;
+            it++;
             EXPECT_EQ(rd1.score, (*it).score);
             EXPECT_EQ(rd1.username, (*it).username);
-            --it;
+            it--;
             EXPECT_EQ(rd.score, (*it).score);
             EXPECT_EQ(rd.username, (*it).username);
         }
 
         //=================================== イテレータのコピーを行う ===================================
+
+        /**********************************************************************************//**
+            @brief		ConstIteratorからIteratorのコピーが作成されないかチェック
+            @details	ID:イテレータ-17(手動)\n
+                        ConstIteratorからIteratorへのコピーが不可能であることを確認しています。\n
+                        有効にしてコンパイルエラーになれば成功です。\n
+        *//***********************************************************************************/
+        TEST(ListManualTest, TestCopyConstructorWhenConst)
+        {
+#if defined TT_TEST_COPY_CONSTRUCTOR_WHEN_CONST
+            DoublyLinkedList list;
+            list.Insert(list.GetEnd(), rd);
+            DoublyLinkedList::ConstIterator cit = list.GetBegin();
+            DoublyLinkedList::Iterator it(cit);
+#endif //TT_TEST_COPY_CONSTRUCTOR_WHEN_CONST
+            SUCCEED();
+        }
 
         /**********************************************************************************//**
             @brief      コピーコンストラクト後の値がコピー元と等しいことをチェックするテスト
@@ -816,6 +949,23 @@ namespace ex01_DataStructure {
         }
 
         //=================================== イテレータの代入を行う ===================================
+
+        /**********************************************************************************//**
+            @brief		IteratorにConstIteratorが代入できないかチェック
+            @details	ID:イテレータ-19(手動)\n
+                        IteratorにConstIteratorが代入することが不可能であることを確認しています。\n
+                        有効にしてコンパイルエラーになれば成功です。\n
+        *//***********************************************************************************/
+        TEST(ListManualTest, TestAssignmentWhenConst)
+        {
+#if defined TT_TEST_ASSIGNMMENT_WHEN_CONST
+            DoublyLinkedList list;
+            list.Insert(list.GetEnd(), rd);
+            DoublyLinkedList::ConstIterator cit = list.GetBegin();
+            DoublyLinkedList::Iterator it = cit;
+#endif //TT_TEST_ASSIGNMMENT_WHEN_CONST
+            SUCCEED();
+        }
 
         /**********************************************************************************//**
             @brief      代入後の値がコピー元と等しいことをチェックするテスト
