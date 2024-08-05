@@ -174,3 +174,5 @@ public:
      */
     ~DoublyLinkedList();
 };
+
+#include "DoublyLinkedList.inl"
