@@ -7,10 +7,11 @@ DoublyLinkedList::ConstIterator::ConstIterator(Node* node, const DoublyLinkedLis
 
 DoublyLinkedList::ConstIterator::ConstIterator(const ConstIterator& other) : current(other.current), list(other.list) {}
 
-void DoublyLinkedList::ConstIterator::operator--() {
+DoublyLinkedList::ConstIterator& DoublyLinkedList::ConstIterator::operator--() {
     assert(current != nullptr);
 
     current = current->prev;
+    return *this;
 }
 
 DoublyLinkedList::ConstIterator DoublyLinkedList::ConstIterator::operator--(int) {
@@ -21,10 +22,11 @@ DoublyLinkedList::ConstIterator DoublyLinkedList::ConstIterator::operator--(int)
     return temp;
 }
 
-void DoublyLinkedList::ConstIterator::operator++() {
+DoublyLinkedList::ConstIterator& DoublyLinkedList::ConstIterator::operator++() {
     assert(current != nullptr);
     
     current = current->next;
+    return *this;
 }
 
 DoublyLinkedList::ConstIterator DoublyLinkedList::ConstIterator::operator++(int) {
@@ -129,7 +131,7 @@ DoublyLinkedList::Iterator DoublyLinkedList::GetBegin() {
     return Iterator(head, this);
 }
 
-DoublyLinkedList::ConstIterator DoublyLinkedList::GetBegin() const {
+DoublyLinkedList::ConstIterator DoublyLinkedList::GetBeginConst() const {
     return ConstIterator(head, this);
 }
 
@@ -137,8 +139,16 @@ DoublyLinkedList::Iterator DoublyLinkedList::GetEnd() {
     return Iterator(nullptr, this);
 }
 
-DoublyLinkedList::ConstIterator DoublyLinkedList::GetEnd() const {
+DoublyLinkedList::ConstIterator DoublyLinkedList::GetEndConst() const {
     return ConstIterator(nullptr, this);
+}
+
+DoublyLinkedList::Iterator DoublyLinkedList::GetTail() {
+    return Iterator(tail, this);
+}
+
+DoublyLinkedList::ConstIterator DoublyLinkedList::GetTailConst() const {
+    return ConstIterator(tail, this);
 }
 
 DoublyLinkedList::~DoublyLinkedList() {

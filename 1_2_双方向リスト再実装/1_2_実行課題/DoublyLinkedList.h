@@ -59,7 +59,7 @@ public:
         /**
          * @brief リストの先頭に向かって一つ進める
          */
-        void operator--();
+        ConstIterator& operator--();
 
         /**
         * @brief リストの先頭に向かって一つ進める
@@ -69,7 +69,7 @@ public:
         /**
          * @brief リストの末尾に向かって一つ進める
          */
-        void operator++();
+        ConstIterator& operator++();
 
         /**
          * @brief リストの末尾に向かって一つ進める
@@ -157,19 +157,31 @@ public:
      * @brief 先頭コンストイテレータ取得
      * @return 先頭コンストイテレータ
      */
-    ConstIterator GetBegin() const;
+    ConstIterator GetBeginConst() const;
+
+    /**
+     * @brief 終端イテレータ取得
+     * @return 終端イテレータ
+     */
+    Iterator GetEnd();
+
+    /**
+     * @brief 終端コンストイテレータ取得
+     * @return 終端コンストイテレータ
+     */
+    ConstIterator GetEndConst() const;
 
     /**
      * @brief 末尾イテレータ取得
      * @return 末尾イテレータ
      */
-    Iterator GetEnd();
+    Iterator GetTail();
 
     /**
      * @brief 末尾コンストイテレータ取得
      * @return 末尾コンストイテレータ
      */
-    ConstIterator GetEnd() const;
+    ConstIterator GetTailConst() const;
 
     /**
      * @brief デストラクタ
