@@ -217,7 +217,7 @@ namespace ex01_DataStructure {
         *//***********************************************************************************/
         TEST(InsertTest, TestInsertWhenConst) {
             DoublyLinkedList<ResultData> list;
-            DoublyLinkedList<ResultData>::ConstIterator cit = list.GetBegin();
+            DoublyLinkedList<ResultData>::ConstIterator cit = list.GetBeginConst();
             DoublyLinkedList<ResultData>::Iterator it(nullptr, nullptr);
             it.current = cit.current;
             it.list = cit.list;
@@ -325,7 +325,7 @@ namespace ex01_DataStructure {
         TEST(EraseTest, TestEraseWhenConst) {
             DoublyLinkedList<ResultData> list;
             list.Insert(list.GetEnd(), rd);
-            DoublyLinkedList<ResultData>::ConstIterator cit = list.GetBegin();
+            DoublyLinkedList<ResultData>::ConstIterator cit = list.GetBeginConst();
             DoublyLinkedList<ResultData>::Iterator it(nullptr, nullptr);
             it.current = cit.current;
             it.list = cit.list;
@@ -459,7 +459,7 @@ namespace ex01_DataStructure {
         *//***********************************************************************************/
         TEST(BeginIteratorTest, TestBeginWhenEmptyWhenConst) {
             DoublyLinkedList<ResultData> list;
-            DoublyLinkedList<ResultData>::Iterator cit = list.GetBegin();
+            DoublyLinkedList<ResultData>::ConstIterator cit = list.GetBeginConst();
             EXPECT_EQ(cit, list.GetEnd());
         }
 
@@ -471,7 +471,7 @@ namespace ex01_DataStructure {
         TEST(BeginIteratorTest, TestBeginWhenOneElementWhenConst) {
             DoublyLinkedList<ResultData> list;
             list.Insert(list.GetEnd(), rd);
-            DoublyLinkedList<ResultData>::ConstIterator cit = list.GetBegin();
+            DoublyLinkedList<ResultData>::ConstIterator cit = list.GetBeginConst();
             EXPECT_EQ(rd.score, (*cit).score);
             EXPECT_EQ(rd.username, (*cit).username);
         }
@@ -485,7 +485,7 @@ namespace ex01_DataStructure {
             DoublyLinkedList<ResultData> list;
             list.Insert(list.GetEnd(), rd);
             list.Insert(list.GetEnd(), rd1);
-            DoublyLinkedList<ResultData>::ConstIterator cit = list.GetBegin();
+            DoublyLinkedList<ResultData>::ConstIterator cit = list.GetBeginConst();
             EXPECT_EQ(rd.score, (*cit).score);
             EXPECT_EQ(rd.username, (*cit).username);
         }
@@ -498,7 +498,7 @@ namespace ex01_DataStructure {
         TEST(BeginIteratorTest, TestBeginAfterInsertWhenConst) {
             DoublyLinkedList<ResultData> list;
             list.Insert(list.GetEnd(), rd);
-            DoublyLinkedList<ResultData>::ConstIterator cit = list.GetBegin();
+            DoublyLinkedList<ResultData>::ConstIterator cit = list.GetBeginConst();
             EXPECT_EQ(rd.score, (*cit).score);
             EXPECT_EQ(rd.username, (*cit).username);
         }
@@ -513,7 +513,7 @@ namespace ex01_DataStructure {
             list.Insert(list.GetEnd(), rd);
             list.Insert(list.GetEnd(), rd1);
             list.Erase(list.GetBegin());
-            DoublyLinkedList<ResultData>::ConstIterator cit = list.GetBegin();;
+            DoublyLinkedList<ResultData>::ConstIterator cit = list.GetBeginConst();;
             EXPECT_EQ(rd1.score, (*cit).score);
             EXPECT_EQ(rd1.username, (*cit).username);
         }
@@ -528,7 +528,7 @@ namespace ex01_DataStructure {
         {
 #if defined TT_TEST_MANUAL
             const DoublyLinkedList<ResultData> list;
-            DoublyLinkedList<ResultData>::ConstIterator cit = list.GetBegin();
+            DoublyLinkedList<ResultData>::ConstIterator cit = list.GetBeginConst();
 #endif //TT_TEST_MANUAL
             SUCCEED();
         }
@@ -543,8 +543,9 @@ namespace ex01_DataStructure {
         *//***********************************************************************************/
         TEST(EndIteratorTest, TestEndWhenEmpty) {
             DoublyLinkedList<ResultData> list;
-            DoublyLinkedList<ResultData>::Iterator it = list.GetEnd();
-            EXPECT_EQ(it, list.GetEnd());
+            DoublyLinkedList<ResultData>::Iterator it1 = list.GetTail();
+            DoublyLinkedList<ResultData>::Iterator it2 = list.GetEnd();
+            EXPECT_EQ(it1, it2);
         }
 
         /**********************************************************************************//**
@@ -555,8 +556,10 @@ namespace ex01_DataStructure {
         TEST(EndIteratorTest, TestEndWhenOneElement) {
             DoublyLinkedList<ResultData> list;
             list.Insert(list.GetEnd(), rd);
-            DoublyLinkedList<ResultData>::Iterator it = list.GetEnd();
-            EXPECT_EQ(it, list.GetEnd());
+            DoublyLinkedList<ResultData>::Iterator it1 = list.GetTail();
+            ++it1;
+            DoublyLinkedList<ResultData>::Iterator it2 = list.GetEnd();
+            EXPECT_EQ(it1, it2);
         }
 
         /**********************************************************************************//**
@@ -568,8 +571,10 @@ namespace ex01_DataStructure {
             DoublyLinkedList<ResultData> list;
             list.Insert(list.GetEnd(), rd);
             list.Insert(list.GetEnd(), rd1);
-            DoublyLinkedList<ResultData>::Iterator it = list.GetEnd();
-            EXPECT_EQ(it, list.GetEnd());
+            DoublyLinkedList<ResultData>::Iterator it1 = list.GetTail();
+            ++it1;
+            DoublyLinkedList<ResultData>::Iterator it2 = list.GetEnd();
+            EXPECT_EQ(it1, it2);
         }
 
         /**********************************************************************************//**
@@ -580,8 +585,10 @@ namespace ex01_DataStructure {
         TEST(EndIteratorTest, TestEndAfterInsert) {
             DoublyLinkedList<ResultData> list;
             list.Insert(list.GetEnd(), rd);
-            DoublyLinkedList<ResultData>::Iterator it = list.GetEnd();
-            EXPECT_EQ(it, list.GetEnd());
+            DoublyLinkedList<ResultData>::Iterator it1 = list.GetTail();
+            ++it1;
+            DoublyLinkedList<ResultData>::Iterator it2 = list.GetEnd();
+            EXPECT_EQ(it1, it2);
         }
 
         /**********************************************************************************//**
@@ -593,9 +600,9 @@ namespace ex01_DataStructure {
             DoublyLinkedList<ResultData> list;
             list.Insert(list.GetEnd(), rd);
             list.Erase(list.GetBegin());
-            DoublyLinkedList<ResultData>::Iterator it = list.GetEnd();
-
-            EXPECT_EQ(it, list.GetEnd());
+            DoublyLinkedList<ResultData>::Iterator it1 = list.GetTail();
+            DoublyLinkedList<ResultData>::Iterator it2 = list.GetEnd();
+            EXPECT_EQ(it1, it2);
         }
 
         /**********************************************************************************//**
@@ -623,8 +630,9 @@ namespace ex01_DataStructure {
         *//***********************************************************************************/
         TEST(EndIteratorTest, TestEndWhenEmptyWhenConst) {
             DoublyLinkedList<ResultData> list;
-            DoublyLinkedList<ResultData>::ConstIterator cit = list.GetEnd();
-            EXPECT_EQ(cit, list.GetEnd());
+            DoublyLinkedList<ResultData>::Iterator it = list.GetTail();
+            DoublyLinkedList<ResultData>::ConstIterator cit = list.GetEndConst();
+            EXPECT_EQ(it, cit);
         }
 
         /**********************************************************************************//**
@@ -635,8 +643,10 @@ namespace ex01_DataStructure {
         TEST(EndIteratorTest, TestEndWhenOneElementWhenConst) {
             DoublyLinkedList<ResultData> list;
             list.Insert(list.GetEnd(), rd);
-            DoublyLinkedList<ResultData>::ConstIterator cit = list.GetEnd();
-            EXPECT_EQ(cit, list.GetEnd());
+            DoublyLinkedList<ResultData>::Iterator it = list.GetTail();
+            ++it;
+            DoublyLinkedList<ResultData>::ConstIterator cit = list.GetEndConst();
+            EXPECT_EQ(it, cit);
         }
 
         /**********************************************************************************//**
@@ -648,8 +658,10 @@ namespace ex01_DataStructure {
             DoublyLinkedList<ResultData> list;
             list.Insert(list.GetEnd(), rd);
             list.Insert(list.GetEnd(), rd1);
-            DoublyLinkedList<ResultData>::ConstIterator cit = list.GetEnd();
-            EXPECT_EQ(cit, list.GetEnd());
+            DoublyLinkedList<ResultData>::Iterator it = list.GetTail();
+            ++it;
+            DoublyLinkedList<ResultData>::ConstIterator cit = list.GetEndConst();
+            EXPECT_EQ(it, cit);
         }
 
         /**********************************************************************************//**
@@ -660,8 +672,10 @@ namespace ex01_DataStructure {
         TEST(EndIteratorTest, TestEndAfterInsertWhenConst) {
             DoublyLinkedList<ResultData> list;
             list.Insert(list.GetEnd(), rd);
-            DoublyLinkedList<ResultData>::ConstIterator cit = list.GetEnd();
-            EXPECT_EQ(cit, list.GetEnd());
+            DoublyLinkedList<ResultData>::Iterator it = list.GetTail();
+            ++it;
+            DoublyLinkedList<ResultData>::ConstIterator cit = list.GetEndConst();
+            EXPECT_EQ(it, cit);
         }
 
         /**********************************************************************************//**
@@ -673,8 +687,9 @@ namespace ex01_DataStructure {
             DoublyLinkedList<ResultData> list;
             list.Insert(list.GetEnd(), rd);
             list.Erase(list.GetBegin());
-            DoublyLinkedList<ResultData>::ConstIterator cit = list.GetEnd();
-            EXPECT_EQ(cit, list.GetEnd());
+            DoublyLinkedList<ResultData>::Iterator it = list.GetTail();
+            DoublyLinkedList<ResultData>::ConstIterator cit = list.GetEndConst();
+            EXPECT_EQ(it, cit);
         }
 
         /**********************************************************************************//**
@@ -687,7 +702,7 @@ namespace ex01_DataStructure {
         {
 #if defined TT_TEST_MANUAL
             const DoublyLinkedList<ResultData> list;
-            DoublyLinkedList<ResultData>::ConstIterator cit = list.GetEnd();
+            DoublyLinkedList<ResultData>::ConstIterator cit = list.GetEndConst();
 #endif //TT_TEST_MANUAL
             SUCCEED();
         }
@@ -730,7 +745,7 @@ namespace ex01_DataStructure {
 #if defined TT_TEST_MANUAL
             DoublyLinkedList<ResultData> list;
             list.Insert(list.GetEnd(), rd);
-            DoublyLinkedList<ResultData>::ConstIterator cit = list.GetBegin();
+            DoublyLinkedList<ResultData>::ConstIterator cit = list.GetBeginConst();
             (*it).score = 400;
             (*it).username = "User3";
 #endif //TT_TEST_MANUAL
@@ -821,9 +836,11 @@ namespace ex01_DataStructure {
             auto it = list.GetBegin();
             EXPECT_EQ(rd.score, (*it).score);
             EXPECT_EQ(rd.username, (*it).username);
-            ++it;
+            auto cit = ++it;
             EXPECT_EQ(rd1.score, (*it).score);
             EXPECT_EQ(rd1.username, (*it).username);
+            EXPECT_EQ(rd1.score, (*cit).score);
+            EXPECT_EQ(rd1.username, (*cit).username);
         }
 
         /**********************************************************************************//**
@@ -908,9 +925,11 @@ namespace ex01_DataStructure {
             ++it;
             EXPECT_EQ(rd1.score, (*it).score);
             EXPECT_EQ(rd1.username, (*it).username);
-            --it;
+            auto cit = --it;
             EXPECT_EQ(rd.score, (*it).score);
             EXPECT_EQ(rd.username, (*it).username);
+            EXPECT_EQ(rd.score, (*cit).score);
+            EXPECT_EQ(rd.username, (*cit).username);
         }
 
         /**********************************************************************************//**
@@ -946,7 +965,7 @@ namespace ex01_DataStructure {
 #if defined TT_TEST_MANUAL
             DoublyLinkedList<ResultData> list;
             list.Insert(list.GetEnd(), rd);
-            DoublyLinkedList<ResultData>::ConstIterator cit = list.GetBegin();
+            DoublyLinkedList<ResultData>::ConstIterator cit = list.GetBeginConst();
             DoublyLinkedList<ResultData>::Iterator it(cit);
 #endif //TT_TEST_MANUAL
             SUCCEED();
@@ -978,7 +997,7 @@ namespace ex01_DataStructure {
 #if defined TT_TEST_MANUAL
             DoublyLinkedList<ResultData> list;
             list.Insert(list.GetEnd(), rd);
-            DoublyLinkedList<ResultData>::ConstIterator cit = list.GetBegin();
+            DoublyLinkedList<ResultData>::ConstIterator cit = list.GetBeginConst();
             DoublyLinkedList<ResultData>::Iterator it = cit;
 #endif //TT_TEST_MANUAL
             SUCCEED();
