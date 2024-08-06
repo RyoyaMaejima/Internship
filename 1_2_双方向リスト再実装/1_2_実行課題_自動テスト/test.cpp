@@ -44,7 +44,13 @@ namespace ex01_DataStructure {
         *//***********************************************************************************/
         TEST(GetDataNumTest, TestGetDataNumAfterPushFailed)
         {
-            // 挿入失敗はメモリ確保失敗時のためスキップ
+            DoublyLinkedList list1;
+            list1.Insert(list1.GetEnd(), rd);
+            DoublyLinkedList list2;
+            list2.Insert(list2.GetEnd(), rd1);
+            DoublyLinkedList::Iterator it = list2.GetEnd();
+            list1.Insert(it, rd2);
+            EXPECT_EQ(1, list1.GetDataNum());
         }
 
         /**********************************************************************************//**
@@ -65,12 +71,18 @@ namespace ex01_DataStructure {
             @brief		データの挿入が失敗した際のデータ数の取得テスト
             @details	ID:リスト-4\n
                         データ数の取得機能のテストです。\n
-                        リスト末尾への挿入が失敗した際の戻り値を確認しています。\n
+                        データの挿入が失敗した際の戻り値を確認しています。\n
                         データ数が増えていなければ成功です。\n
         *//***********************************************************************************/
         TEST(GetDataNumTest, TestGetDataNumAfterInsertFailed)
         {
-            // 挿入失敗はメモリ確保失敗時のためスキップ
+            DoublyLinkedList list1;
+            list1.Insert(list1.GetEnd(), rd);
+            DoublyLinkedList list2;
+            list2.Insert(list2.GetEnd(), rd1);
+            DoublyLinkedList::Iterator it = list2.GetBegin();
+            list1.Insert(it, rd2);
+            EXPECT_EQ(1, list1.GetDataNum());
         }
 
         /**********************************************************************************//**
@@ -88,7 +100,7 @@ namespace ex01_DataStructure {
         }
 
         /**********************************************************************************//**
-            @brief		データの挿入が失敗した際のデータ数の取得テスト
+            @brief		データの削除が失敗した際のデータ数の取得テスト
             @details	ID:リスト-6\n
                         データ数の取得機能のテストです。\n
                         データの削除が失敗した際の戻り値を確認しています。\n
