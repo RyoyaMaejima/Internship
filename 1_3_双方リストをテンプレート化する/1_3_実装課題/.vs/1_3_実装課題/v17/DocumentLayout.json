@@ -3,16 +3,20 @@
   "WorkspaceRootPath": "C:\\workspace\\\u30A4\u30F3\u30BF\u30FC\u30F3\u8AB2\u984C\\\u30A4\u30F3\u30BF\u30FC\u30F3\\Internship\\1_3_\u53CC\u65B9\u30EA\u30B9\u30C8\u3092\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8\u5316\u3059\u308B\\1_3_\u5B9F\u88C5\u8AB2\u984C\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{2EE67CD5-90F8-4BB4-BD6F-916C2ADE45F3}|1_3_\u5B9F\u88C5\u8AB2\u984C.vcxproj|C:\\workspace\\\u30A4\u30F3\u30BF\u30FC\u30F3\u8AB2\u984C\\\u30A4\u30F3\u30BF\u30FC\u30F3\\Internship\\1_3_\u53CC\u65B9\u30EA\u30B9\u30C8\u3092\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8\u5316\u3059\u308B\\1_3_\u5B9F\u88C5\u8AB2\u984C\\DoublyLinkedList.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{2EE67CD5-90F8-4BB4-BD6F-916C2ADE45F3}|1_3_\u5B9F\u88C5\u8AB2\u984C.vcxproj|solutionrelative:DoublyLinkedList.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{2EE67CD5-90F8-4BB4-BD6F-916C2ADE45F3}|1_3_\u5B9F\u88C5\u8AB2\u984C.vcxproj|C:\\workspace\\\u30A4\u30F3\u30BF\u30FC\u30F3\u8AB2\u984C\\\u30A4\u30F3\u30BF\u30FC\u30F3\\Internship\\1_3_\u53CC\u65B9\u30EA\u30B9\u30C8\u3092\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8\u5316\u3059\u308B\\1_3_\u5B9F\u88C5\u8AB2\u984C\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2EE67CD5-90F8-4BB4-BD6F-916C2ADE45F3}|1_3_\u5B9F\u88C5\u8AB2\u984C.vcxproj|solutionrelative:main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{2EE67CD5-90F8-4BB4-BD6F-916C2ADE45F3}|1_3_\u5B9F\u88C5\u8AB2\u984C.vcxproj|C:\\workspace\\\u30A4\u30F3\u30BF\u30FC\u30F3\u8AB2\u984C\\\u30A4\u30F3\u30BF\u30FC\u30F3\\Internship\\1_3_\u53CC\u65B9\u30EA\u30B9\u30C8\u3092\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8\u5316\u3059\u308B\\1_3_\u5B9F\u88C5\u8AB2\u984C\\DoublyLinkedList.inl||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{2EE67CD5-90F8-4BB4-BD6F-916C2ADE45F3}|1_3_\u5B9F\u88C5\u8AB2\u984C.vcxproj|solutionrelative:DoublyLinkedList.inl||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2EE67CD5-90F8-4BB4-BD6F-916C2ADE45F3}|1_3_\u5B9F\u88C5\u8AB2\u984C.vcxproj|C:\\workspace\\\u30A4\u30F3\u30BF\u30FC\u30F3\u8AB2\u984C\\\u30A4\u30F3\u30BF\u30FC\u30F3\\Internship\\1_3_\u53CC\u65B9\u30EA\u30B9\u30C8\u3092\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8\u5316\u3059\u308B\\1_3_\u5B9F\u88C5\u8AB2\u984C\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{2EE67CD5-90F8-4BB4-BD6F-916C2ADE45F3}|1_3_\u5B9F\u88C5\u8AB2\u984C.vcxproj|solutionrelative:main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{2EE67CD5-90F8-4BB4-BD6F-916C2ADE45F3}|1_3_\u5B9F\u88C5\u8AB2\u984C.vcxproj|C:\\workspace\\\u30A4\u30F3\u30BF\u30FC\u30F3\u8AB2\u984C\\\u30A4\u30F3\u30BF\u30FC\u30F3\\Internship\\1_3_\u53CC\u65B9\u30EA\u30B9\u30C8\u3092\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8\u5316\u3059\u308B\\1_3_\u5B9F\u88C5\u8AB2\u984C\\ResultData.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2EE67CD5-90F8-4BB4-BD6F-916C2ADE45F3}|1_3_\u5B9F\u88C5\u8AB2\u984C.vcxproj|solutionrelative:ResultData.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2EE67CD5-90F8-4BB4-BD6F-916C2ADE45F3}|1_3_\u5B9F\u88C5\u8AB2\u984C.vcxproj|C:\\workspace\\\u30A4\u30F3\u30BF\u30FC\u30F3\u8AB2\u984C\\\u30A4\u30F3\u30BF\u30FC\u30F3\\Internship\\1_3_\u53CC\u65B9\u30EA\u30B9\u30C8\u3092\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8\u5316\u3059\u308B\\1_3_\u5B9F\u88C5\u8AB2\u984C\\DoublyLinkedList.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2EE67CD5-90F8-4BB4-BD6F-916C2ADE45F3}|1_3_\u5B9F\u88C5\u8AB2\u984C.vcxproj|solutionrelative:DoublyLinkedList.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,19 +26,32 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "main.cpp",
               "DocumentMoniker": "C:\\workspace\\\u30A4\u30F3\u30BF\u30FC\u30F3\u8AB2\u984C\\\u30A4\u30F3\u30BF\u30FC\u30F3\\Internship\\1_3_\u53CC\u65B9\u30EA\u30B9\u30C8\u3092\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8\u5316\u3059\u308B\\1_3_\u5B9F\u88C5\u8AB2\u984C\\main.cpp",
               "RelativeDocumentMoniker": "main.cpp",
               "ToolTip": "C:\\workspace\\\u30A4\u30F3\u30BF\u30FC\u30F3\u8AB2\u984C\\\u30A4\u30F3\u30BF\u30FC\u30F3\\Internship\\1_3_\u53CC\u65B9\u30EA\u30B9\u30C8\u3092\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8\u5316\u3059\u308B\\1_3_\u5B9F\u88C5\u8AB2\u984C\\main.cpp",
               "RelativeToolTip": "main.cpp",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAAPAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-08-06T02:19:16.103Z",
+              "WhenOpened": "2024-08-06T03:58:39.159Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ResultData.h",
+              "DocumentMoniker": "C:\\workspace\\\u30A4\u30F3\u30BF\u30FC\u30F3\u8AB2\u984C\\\u30A4\u30F3\u30BF\u30FC\u30F3\\Internship\\1_3_\u53CC\u65B9\u30EA\u30B9\u30C8\u3092\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8\u5316\u3059\u308B\\1_3_\u5B9F\u88C5\u8AB2\u984C\\ResultData.h",
+              "RelativeDocumentMoniker": "ResultData.h",
+              "ToolTip": "C:\\workspace\\\u30A4\u30F3\u30BF\u30FC\u30F3\u8AB2\u984C\\\u30A4\u30F3\u30BF\u30FC\u30F3\\Internship\\1_3_\u53CC\u65B9\u30EA\u30B9\u30C8\u3092\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8\u5316\u3059\u308B\\1_3_\u5B9F\u88C5\u8AB2\u984C\\ResultData.h",
+              "RelativeToolTip": "ResultData.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAjAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-08-06T03:58:06.11Z",
               "EditorCaption": ""
             },
             {
@@ -45,22 +62,22 @@
               "RelativeDocumentMoniker": "DoublyLinkedList.inl",
               "ToolTip": "C:\\workspace\\\u30A4\u30F3\u30BF\u30FC\u30F3\u8AB2\u984C\\\u30A4\u30F3\u30BF\u30FC\u30F3\\Internship\\1_3_\u53CC\u65B9\u30EA\u30B9\u30C8\u3092\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8\u5316\u3059\u308B\\1_3_\u5B9F\u88C5\u8AB2\u984C\\DoublyLinkedList.inl",
               "RelativeToolTip": "DoublyLinkedList.inl",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAAKMAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
-              "WhenOpened": "2024-08-06T02:19:00.073Z",
+              "WhenOpened": "2024-08-06T03:55:58.951Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "DoublyLinkedList.h",
               "DocumentMoniker": "C:\\workspace\\\u30A4\u30F3\u30BF\u30FC\u30F3\u8AB2\u984C\\\u30A4\u30F3\u30BF\u30FC\u30F3\\Internship\\1_3_\u53CC\u65B9\u30EA\u30B9\u30C8\u3092\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8\u5316\u3059\u308B\\1_3_\u5B9F\u88C5\u8AB2\u984C\\DoublyLinkedList.h",
               "RelativeDocumentMoniker": "DoublyLinkedList.h",
               "ToolTip": "C:\\workspace\\\u30A4\u30F3\u30BF\u30FC\u30F3\u8AB2\u984C\\\u30A4\u30F3\u30BF\u30FC\u30F3\\Internship\\1_3_\u53CC\u65B9\u30EA\u30B9\u30C8\u3092\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8\u5316\u3059\u308B\\1_3_\u5B9F\u88C5\u8AB2\u984C\\DoublyLinkedList.h",
               "RelativeToolTip": "DoublyLinkedList.h",
-              "ViewState": "AQIAAHUAAAAAAAAAAAAAAIoAAAAmAAAA",
+              "ViewState": "AQIAAJYAAAAAAAAAAAAAAKwAAAAfAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-08-06T02:18:46.568Z",
+              "WhenOpened": "2024-08-06T03:55:42.343Z",
               "EditorCaption": ""
             }
           ]

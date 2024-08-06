@@ -133,10 +133,10 @@ namespace ex01_DataStructure {
         *//***********************************************************************************/
         TEST(GetDataNumTest, TestGetDataNumWhenConst)
         {
-#if defined TT_TEST_GET_DATA_NUM_WHEN_CONST
+#if defined TT_TEST_MANUAL
             const DoublyLinkedList list;
             EXPECT_EQ(0, list.GetDataNum());
-#endif //TT_TEST_GET_DATA_NUM_WHEN_CONST
+#endif //TT_TEST_MANUAL
             SUCCEED();
         }
 
@@ -248,10 +248,10 @@ namespace ex01_DataStructure {
         *//***********************************************************************************/
         TEST(ListManualTest, TestInsertWhenConst)
         {
-#if defined TT_TEST_INSERT_WHEN_CONST
+#if defined TT_TEST_MANUAL
             const DoublyLinkedList list;
             list.Insert(list.GetEnd(), rd);
-#endif //TT_TEST_INSERT_WHEN_CONST
+#endif //TT_TEST_MANUAL
             SUCCEED();
         }
 
@@ -356,11 +356,11 @@ namespace ex01_DataStructure {
         *//***********************************************************************************/
         TEST(ListManualTest, TestEraseWhenConst)
         {
-#if defined TT_TEST_ERASE_WHEN_CONST
+#if defined TT_TEST_MANUAL
             const DoublyLinkedList list;
             list.Insert(list.GetEnd(), rd);
             list.Erase(list.GetEnd());
-#endif //TT_TEST_ERASE_WHEN_CONST
+#endif //TT_TEST_MANUAL
             SUCCEED();
         }
 
@@ -441,10 +441,10 @@ namespace ex01_DataStructure {
         *//***********************************************************************************/
         TEST(ListManualTest, TestBeginWhenConst)
         {
-#if defined TT_TEST_BEGIN_WHEN_CONST
+#if defined TT_TEST_MANUAL
             const DoublyLinkedList list;
             DoublyLinkedList::Iterator it = list.GetBegin();
-#endif //TT_TEST_BEGIN_WHEN_CONST
+#endif //TT_TEST_MANUAL
             SUCCEED();
         }
 
@@ -525,10 +525,10 @@ namespace ex01_DataStructure {
        *//***********************************************************************************/
         TEST(ListManualTest, TestBeginWhenConstWhenConst)
         {
-#if defined TT_TEST_BEGIN_WHEN_CONST_WHEN_CONST
+#if defined TT_TEST_MANUAL
             const DoublyLinkedList list;
             DoublyLinkedList::ConstIterator cit = list.GetBegin();
-#endif //TT_TEST_BEGIN_WHEN_CONST_WHEN_CONST
+#endif //TT_TEST_BEGIN_MANUAL
             SUCCEED();
         }
 
@@ -605,10 +605,10 @@ namespace ex01_DataStructure {
         *//***********************************************************************************/
         TEST(ListManualTest, TestEndWhenConst)
         {
-#if defined TT_TEST_END_WHEN_CONST
+#if defined TT_TEST_MANUAL
             const DoublyLinkedList list;
             DoublyLinkedList::Iterator it = list.GetEnd();
-#endif //TT_TEST_END_WHEN_CONST
+#endif //TT_TEST_MANUAL
             SUCCEED();
         }
 
@@ -684,10 +684,10 @@ namespace ex01_DataStructure {
         *//***********************************************************************************/
         TEST(ListManualTest, TestEndWhenConstWhenConst)
         {
-#if defined TT_TEST_END_WHEN_CONST_WHEN_CONST
+#if defined TT_TEST_MANUAL
             const DoublyLinkedList list;
             DoublyLinkedList::ConstIterator cit = list.GetEnd();
-#endif //TT_TEST_END_WHEN_CONST_WHEN_CONST
+#endif //TT_TEST_MANUAL
             SUCCEED();
         }
 
@@ -726,13 +726,13 @@ namespace ex01_DataStructure {
         *//***********************************************************************************/
         TEST(ListManualTest, TestIteratorAssignmentWhenConst)
         {
-#if defined TT_TEST_ITERATOR_ASSIGNMENT_WHEN_CONST
+#if defined TT_TEST_MANUAL
             DoublyLinkedList list;
             list.Insert(list.GetEnd(), rd);
             DoublyLinkedList::ConstIterator cit = list.GetBegin();
             (*it).score = 400;
             (*it).username = "User3";
-#endif //TT_TEST_ITERATOR_ASSIGNMENT_WHEN_CONST
+#endif //TT_TEST_MANUAL
             SUCCEED();
         }
 
@@ -837,9 +837,11 @@ namespace ex01_DataStructure {
             auto it = list.GetBegin();
             EXPECT_EQ(rd.score, (*it).score);
             EXPECT_EQ(rd.username, (*it).username);
-            it++;
+            auto cit = it++;
             EXPECT_EQ(rd1.score, (*it).score);
             EXPECT_EQ(rd1.username, (*it).username);
+            EXPECT_EQ(rd.score, (*cit).score);
+            EXPECT_EQ(rd.username, (*cit).username);
         }
 
         //=================================== イテレータをリストの先頭に向かって一つ進める ===================================
@@ -923,9 +925,11 @@ namespace ex01_DataStructure {
             it++;
             EXPECT_EQ(rd1.score, (*it).score);
             EXPECT_EQ(rd1.username, (*it).username);
-            it--;
+            auto cit = it--;
             EXPECT_EQ(rd.score, (*it).score);
             EXPECT_EQ(rd.username, (*it).username);
+            EXPECT_EQ(rd1.score, (*cit).score);
+            EXPECT_EQ(rd1.username, (*cit).username);
         }
 
         //=================================== イテレータのコピーを行う ===================================
@@ -938,12 +942,12 @@ namespace ex01_DataStructure {
         *//***********************************************************************************/
         TEST(ListManualTest, TestCopyConstructorWhenConst)
         {
-#if defined TT_TEST_COPY_CONSTRUCTOR_WHEN_CONST
+#if defined TT_TEST_MANUAL
             DoublyLinkedList list;
             list.Insert(list.GetEnd(), rd);
             DoublyLinkedList::ConstIterator cit = list.GetBegin();
             DoublyLinkedList::Iterator it(cit);
-#endif //TT_TEST_COPY_CONSTRUCTOR_WHEN_CONST
+#endif //TT_TEST_MANUAL
             SUCCEED();
         }
 
@@ -970,12 +974,12 @@ namespace ex01_DataStructure {
         *//***********************************************************************************/
         TEST(ListManualTest, TestAssignmentWhenConst)
         {
-#if defined TT_TEST_ASSIGNMMENT_WHEN_CONST
+#if defined TT_TEST_MANUAL
             DoublyLinkedList list;
             list.Insert(list.GetEnd(), rd);
             DoublyLinkedList::ConstIterator cit = list.GetBegin();
             DoublyLinkedList::Iterator it = cit;
-#endif //TT_TEST_ASSIGNMMENT_WHEN_CONST
+#endif //TT_TEST_MANUAL
             SUCCEED();
         }
 

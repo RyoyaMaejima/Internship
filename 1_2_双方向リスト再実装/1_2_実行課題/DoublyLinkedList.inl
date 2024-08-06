@@ -1,4 +1,5 @@
 #include "DoublyLinkedList.h"
+#include <cassert>
 
 DoublyLinkedList::Node::Node(const ResultData& rd) : data(rd), prev(nullptr), next(nullptr) {}
 
@@ -7,30 +8,37 @@ DoublyLinkedList::ConstIterator::ConstIterator(Node* node, const DoublyLinkedLis
 DoublyLinkedList::ConstIterator::ConstIterator(const ConstIterator& other) : current(other.current), list(other.list) {}
 
 void DoublyLinkedList::ConstIterator::operator--() {
-    if (current) current = current->prev;
-    else exit(1);
+    assert(current != nullptr);
+
+    current = current->prev;
 }
 
 DoublyLinkedList::ConstIterator DoublyLinkedList::ConstIterator::operator--(int) {
+    assert(current != nullptr);
+
     ConstIterator temp = *this;
     --(*this);
     return temp;
 }
 
 void DoublyLinkedList::ConstIterator::operator++() {
-    if (current) current = current->next;
-    else exit(1);
+    assert(current != nullptr);
+    
+    current = current->next;
 }
 
 DoublyLinkedList::ConstIterator DoublyLinkedList::ConstIterator::operator++(int) {
+    assert(current != nullptr);
+
     ConstIterator temp = *this;
     ++(*this);
     return temp;
 }
 
 const ResultData& DoublyLinkedList::ConstIterator::operator*() const {
-    if (current) return current->data;
-    else exit(1);
+    assert(current != nullptr);
+
+    return current->data;
 }
 
 void  DoublyLinkedList::ConstIterator::operator=(const ConstIterator& other) {
@@ -48,8 +56,9 @@ bool DoublyLinkedList::ConstIterator::operator!=(const ConstIterator& other) con
 DoublyLinkedList::Iterator::Iterator(Node* node, const DoublyLinkedList* list) : ConstIterator(node, list) {}
 
 ResultData& DoublyLinkedList::Iterator::operator*() {
-    if (current) return current->data;
-    else exit(1);
+    assert(current != nullptr);
+
+    return current->data;
 }
 
 DoublyLinkedList::DoublyLinkedList() : head(nullptr), tail(nullptr), dataNum(0) {}
@@ -133,9 +142,7 @@ DoublyLinkedList::ConstIterator DoublyLinkedList::GetEnd() const {
 }
 
 DoublyLinkedList::~DoublyLinkedList() {
-    while (head) {
-        Node* temp = head;
-        head = head->next;
-        delete temp;
+    while (head != nullptr) {
+        Erase(GetBegin());
     }
 }

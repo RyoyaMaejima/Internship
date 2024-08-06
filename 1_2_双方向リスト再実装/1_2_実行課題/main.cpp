@@ -25,7 +25,7 @@ int main() {
 
     // リストの中身を表示
     DoublyLinkedList::Iterator it = list.GetBegin();
-    while (it.current) {
+    while (it != list.GetEnd()) {
         std::cout << (*it).score << "\t" << (*it).username << std::endl;
         ++it;
     }

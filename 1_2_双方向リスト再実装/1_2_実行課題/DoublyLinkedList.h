@@ -136,14 +136,14 @@ public:
      * @brief データの挿入
      * @param iter 挿入位置のイテレータ
      * @param data 挿入するデータ
-     * @return 挿入が成功すればtrue、失敗すればfalse
+     * @return 挿入が成功すればtrue、別のリストのイテレータを指定するとfalse
      */
     bool Insert(const Iterator& iter, const ResultData& data);
 
     /**
      * @brief データの削除
      * @param iter 削除する位置のイテレータ
-     * @return 削除が成功すればtrue、失敗すればfalse
+     * @return 削除が成功すればtrue、イテレータがnullまたは別のリストのイテレータを指定するとfalse
      */
     bool Erase(const Iterator& iter);
 
