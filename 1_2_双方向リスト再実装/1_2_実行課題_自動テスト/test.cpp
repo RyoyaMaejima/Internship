@@ -216,7 +216,7 @@ namespace ex01_DataStructure {
         *//***********************************************************************************/
         TEST(InsertTest, TestInsertWhenConst) {
             DoublyLinkedList list;
-            DoublyLinkedList::ConstIterator cit = list.GetBegin();
+            DoublyLinkedList::ConstIterator cit = list.GetBeginConst();
             DoublyLinkedList::Iterator it(nullptr, nullptr);
             it.current = cit.current;
             it.list = cit.list;
@@ -324,7 +324,7 @@ namespace ex01_DataStructure {
         TEST(EraseTest, TestEraseWhenConst) {
             DoublyLinkedList list;
             list.Insert(list.GetEnd(), rd);
-            DoublyLinkedList::ConstIterator cit = list.GetBegin();
+            DoublyLinkedList::ConstIterator cit = list.GetBeginConst();
             DoublyLinkedList::Iterator it(nullptr, nullptr);
             it.current = cit.current;
             it.list = cit.list;
@@ -744,7 +744,7 @@ namespace ex01_DataStructure {
 #if defined TT_TEST_MANUAL
             DoublyLinkedList list;
             list.Insert(list.GetEnd(), rd);
-            DoublyLinkedList::ConstIterator cit = list.GetBegin();
+            DoublyLinkedList::ConstIterator cit = list.GetBeginConst();
             (*it).score = 400;
             (*it).username = "User3";
 #endif //TT_TEST_MANUAL
@@ -964,7 +964,7 @@ namespace ex01_DataStructure {
 #if defined TT_TEST_MANUAL
             DoublyLinkedList list;
             list.Insert(list.GetEnd(), rd);
-            DoublyLinkedList::ConstIterator cit = list.GetBegin();
+            DoublyLinkedList::ConstIterator cit = list.GetBeginConst();
             DoublyLinkedList::Iterator it(cit);
 #endif //TT_TEST_MANUAL
             SUCCEED();
@@ -996,7 +996,7 @@ namespace ex01_DataStructure {
 #if defined TT_TEST_MANUAL
             DoublyLinkedList list;
             list.Insert(list.GetEnd(), rd);
-            DoublyLinkedList::ConstIterator cit = list.GetBegin();
+            DoublyLinkedList::ConstIterator cit = list.GetBeginConst();
             DoublyLinkedList::Iterator it = cit;
 #endif //TT_TEST_MANUAL
             SUCCEED();
