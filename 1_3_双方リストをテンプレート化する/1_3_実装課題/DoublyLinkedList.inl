@@ -1,4 +1,5 @@
 #include "DoublyLinkedList.h"
+#include <cassert>
 
 template<typename T>
 DoublyLinkedList<T>::Node::Node(const T& rd) : data(rd), prev(nullptr), next(nullptr) {}
@@ -11,12 +12,15 @@ DoublyLinkedList<T>::ConstIterator::ConstIterator(const ConstIterator& other) : 
 
 template<typename T>
 void DoublyLinkedList<T>::ConstIterator::operator--() {
-    if (current) current = current->prev;
-    else exit(1);
+    assert(current != nullptr);
+
+    current = current->prev;
 }
 
 template<typename T>
 typename DoublyLinkedList<T>::ConstIterator DoublyLinkedList<T>::ConstIterator::operator--(int) {
+    assert(current != nullptr);
+
     ConstIterator temp = *this;
     --(*this);
     return temp;
@@ -24,12 +28,15 @@ typename DoublyLinkedList<T>::ConstIterator DoublyLinkedList<T>::ConstIterator::
 
 template<typename T>
 void DoublyLinkedList<T>::ConstIterator::operator++() {
-    if (current) current = current->next;
-    else exit(1);
+    assert(current != nullptr);
+
+    current = current->next;
 }
 
 template<typename T>
 typename DoublyLinkedList<T>::ConstIterator DoublyLinkedList<T>::ConstIterator::operator++(int) {
+    assert(current != nullptr);
+
     ConstIterator temp = *this;
     ++(*this);
     return temp;
@@ -37,8 +44,9 @@ typename DoublyLinkedList<T>::ConstIterator DoublyLinkedList<T>::ConstIterator::
 
 template<typename T>
 const T& DoublyLinkedList<T>::ConstIterator::operator*() const {
-    if (current) return current->data;
-    else exit(1);
+    assert(current != nullptr);
+
+    return current->data;
 }
 
 template<typename T>
@@ -61,8 +69,9 @@ DoublyLinkedList<T>::Iterator::Iterator(Node* node, const DoublyLinkedList* list
 
 template<typename T>
 T& DoublyLinkedList<T>::Iterator::operator*() {
-    if (current) return current->data;
-    else exit(1);
+    assert(this->current != nullptr);
+
+    return this->current->data;
 }
 
 template<typename T>
@@ -156,8 +165,6 @@ typename DoublyLinkedList<T>::ConstIterator DoublyLinkedList<T>::GetEnd() const 
 template<typename T>
 DoublyLinkedList<T>::~DoublyLinkedList() {
     while (head) {
-        Node* temp = head;
-        head = head->next;
-        delete temp;
+        Erase(GetBegin());
     }
 }

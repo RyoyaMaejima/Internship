@@ -14,18 +14,18 @@ int main() {
         return -1;
     }
 
-    ResultData 
+    ResultData data;
 
     // ファイルから標準入力を受け取る
-    while (file >> score >> username) {
-        ResultData data = { score, username };
+    while (file >> data.score >> data.username) {
+        data = { data.score, data.username };
         // リストに追加
         list.Insert(list.GetEnd(), data);
     }
 
     // リストの中身を表示
-    DoublyLinkedList::Iterator it = list.GetBegin();
-    while (it.current) {
+    DoublyLinkedList<ResultData>::Iterator it = list.GetBegin();
+    while (it != list.GetEnd()) {
         std::cout << (*it).score << "\t" << (*it).username << std::endl;
         ++it;
     }
