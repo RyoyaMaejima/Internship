@@ -19,7 +19,7 @@ private:
 
         /**
          * @brief コンストラクタ
-         * @tparam T 格納するデータ
+         * @tparam rd 格納するデータ
          */
         Node(const T& rd);
     };
@@ -156,7 +156,7 @@ public:
     /**
      * @brief データの挿入
      * @param iter 挿入位置のイテレータ
-     * @tparam T 挿入するデータ
+     * @tparam data 挿入するデータ
      * @return 挿入が成功すればtrue、別のリストのイテレータを指定するとfalse
      */
     bool Insert(const Iterator& iter, const T& data);
