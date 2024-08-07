@@ -19,7 +19,7 @@ private:
 
         /**
          * @brief コンストラクタ
-         * @param rd 格納するデータ
+         * @tparam T 格納するデータ
          */
         Node(const T& rd);
     };
@@ -51,27 +51,31 @@ public:
 
         /**
          * @brief リストの先頭に向かって一つ進める
+         * @return データへの参照
          */
         ConstIterator& operator--();
 
         /**
         * @brief リストの先頭に向かって一つ進める
+        * @return データへの参照
         */
         ConstIterator operator--(int);
 
         /**
          * @brief リストの末尾に向かって一つ進める
+         * @return データへの参照
          */
         ConstIterator& operator++();
 
         /**
          * @brief リストの末尾に向かって一つ進める
+         * @return データへの参照
          */
         ConstIterator operator++(int);
 
         /**
          * @brief イテレータの指す要素を取得する
-         * @return 成績データへの定数参照
+         * @return データへの定数参照
          */
         const T& operator*() const;
 
@@ -108,6 +112,30 @@ public:
         Iterator(Node* node, const DoublyLinkedList* list);
 
         /**
+         * @brief リストの先頭に向かって一つ進める
+         * @return データへの参照
+         */
+        Iterator& operator--();
+
+        /**
+        * @brief リストの先頭に向かって一つ進める
+        * @return データへの参照
+        */
+        Iterator operator--(int);
+
+        /**
+         * @brief リストの末尾に向かって一つ進める
+         * @return データへの参照
+         */
+        Iterator& operator++();
+
+        /**
+         * @brief リストの末尾に向かって一つ進める
+         * @return データへの参照
+         */
+        Iterator operator++(int);
+
+        /**
          * @brief イテレータの指す要素を取得する
          * @return データへの参照
          */
@@ -128,7 +156,7 @@ public:
     /**
      * @brief データの挿入
      * @param iter 挿入位置のイテレータ
-     * @param data 挿入するデータ
+     * @tparam T 挿入するデータ
      * @return 挿入が成功すればtrue、別のリストのイテレータを指定するとfalse
      */
     bool Insert(const Iterator& iter, const T& data);
@@ -163,19 +191,6 @@ public:
      * @return 終端コンストイテレータ
      */
     ConstIterator GetEndConst() const;
-
-
-    /**
-     * @brief 末尾イテレータ取得
-     * @return 末尾イテレータ
-     */
-    Iterator GetTail();
-
-    /**
-     * @brief 末尾コンストイテレータ取得
-     * @return 末尾コンストイテレータ
-     */
-    ConstIterator GetTailConst() const;
 
     /**
      * @brief デストラクタ
