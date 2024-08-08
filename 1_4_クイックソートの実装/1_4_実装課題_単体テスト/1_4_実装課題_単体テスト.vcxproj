@@ -57,7 +57,7 @@
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
-      <AdditionalIncludeDirectories>"C:\workspace\インターン課題\インターン\Internship\1_4_クイックソートの実装\1_4_実装課題"</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir);1_4_実装課題</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -97,6 +97,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\1_4_実装課題\DoublyLinkedList.h" />
+    <ClInclude Include="..\1_4_実装課題\ResultData.h" />
     <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>
@@ -109,6 +111,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\1_4_実装課題\DoublyLinkedList.inl" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

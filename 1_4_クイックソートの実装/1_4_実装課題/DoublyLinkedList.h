@@ -1,7 +1,5 @@
 #pragma once
 
-#include <iostream>
-#include <string>
 #include <functional>
 
 /**
@@ -20,7 +18,7 @@ private:
 
         /**
          * @brief コンストラクタ
-         * @tparam rd 格納するデータ
+         * @param rd 格納するデータ
          */
         Node(const T& rd);
     };
@@ -44,6 +42,13 @@ private:
      * @param comp 比較関数
      */
     Node* partition(Node* left, Node* right, const std::function<bool(const T&, const T&)>& comp);
+
+    /**
+     * @brief スワップ関数
+     * @param data1 入れ替えるデータ
+     * @param data2 入れ替えるデータ
+     */
+    void swap(T& data1, T& data2);
 
 public:
     /**

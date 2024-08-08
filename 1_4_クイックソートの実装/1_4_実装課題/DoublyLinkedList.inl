@@ -1,4 +1,3 @@
-#include "DoublyLinkedList.h"
 #include <cassert>
 
 template<typename T>
@@ -21,12 +20,19 @@ typename DoublyLinkedList<T>::Node* DoublyLinkedList<T>::partition(Node* left, N
     for (Node* j = left; j != right; j = j->next) {
         if (comp(j->data, pivot)) {
             i = (i == nullptr) ? left : i->next;
-            std::swap(i->data, j->data);
+            swap(i->data, j->data);
         }
     }
     i = (i == nullptr) ? left : i->next;
-    std::swap(i->data, right->data);
+    swap(i->data, right->data);
     return i;
+}
+
+template<typename T>
+void DoublyLinkedList<T>::swap(T& data1, T& data2) {
+    T temp = data1;
+    data1 = data2;
+    data2 = temp;
 }
 
 template<typename T>
