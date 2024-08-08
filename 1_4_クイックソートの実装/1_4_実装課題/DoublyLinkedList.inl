@@ -1,4 +1,5 @@
 #include <cassert>
+#include <utility>
 
 template<typename T>
 DoublyLinkedList<T>::Node::Node(const T& rd) : data(rd), prev(nullptr), next(nullptr) {}
@@ -30,9 +31,9 @@ typename DoublyLinkedList<T>::Node* DoublyLinkedList<T>::partition(Node* left, N
 
 template<typename T>
 void DoublyLinkedList<T>::swap(T& data1, T& data2) {
-    T temp = data1;
-    data1 = data2;
-    data2 = temp;
+    T temp = std::move(data1);
+    data1 = std::move(data2);
+    data2 = std::move(temp);
 }
 
 template<typename T>

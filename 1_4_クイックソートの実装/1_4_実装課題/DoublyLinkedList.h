@@ -4,6 +4,7 @@
 
 /**
  * @brief 双方向リストクラス
+ * @tparm T リストに格納するデータ型
  */
 template<typename T>
 class DoublyLinkedList {
@@ -31,7 +32,7 @@ private:
      * @brief クイックソート関数
      * @param left ソート範囲の左端のノード
      * @param right ソート範囲の右端のノード
-     * @param comp 比較関数
+     * @param comp ２つのデータを引数として受け取り、キーに基づいて比較する関数
      */
     void quickSort(Node* left, Node* right, const std::function<bool(const T&, const T&)>& comp);
 
@@ -39,7 +40,7 @@ private:
      * @brief クイックソートのためのパーティション関数
      * @param left パーティション範囲の左端のノード
      * @param right パーティション範囲の右端のノード
-     * @param comp 比較関数
+     * @param comp ２つのデータを引数として受け取り、キーに基づいて比較する関数
      */
     Node* partition(Node* left, Node* right, const std::function<bool(const T&, const T&)>& comp);
 
@@ -218,7 +219,7 @@ public:
 
     /**
      * @brief ソート関数
-     * @param comp 比較関数
+     * @param comp ２つのデータを引数として受け取り、キーに基づいて比較する関数
      */
     void Sort(const std::function<bool(const T&, const T&)>& comp);
 
