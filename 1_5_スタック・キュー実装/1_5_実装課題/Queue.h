@@ -27,7 +27,7 @@ public:
      * @brief キューからデータをデキューする
      * @return デキューが成功するとtrue、リストが空だとfalse
      */
-    bool dequeue();
+    bool dequeue(T& data);
 };
 
 #include "Queue.inl"

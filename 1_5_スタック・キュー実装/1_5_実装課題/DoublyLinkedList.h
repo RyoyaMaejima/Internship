@@ -33,9 +33,11 @@ public:
      * @brief 双方向リストの定数イテレータクラス
      */
     class ConstIterator {
-    public:
+    protected:
         Node* current;  /**< 現在のノード */
         const DoublyLinkedList* list; /**< 所属リストへのポインタ */
+
+        friend DoublyLinkedList;
 
         /**
          * @brief コンストラクタ

@@ -10,9 +10,11 @@ bool Queue<T>::enqueue(const T& data) {
 }
 
 template<typename T>
-bool Queue<T>::dequeue() {
+bool Queue<T>::dequeue(T& data) {
     if (list.GetDataNum() == 0) return false;
-
-    bool success = list.Erase(list.GetBegin());
+    
+    auto it = list.GetBegin();
+    data = *it;
+    bool success = list.Erase(it);
     return success;
 }

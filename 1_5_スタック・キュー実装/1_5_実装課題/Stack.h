@@ -10,9 +10,6 @@ private:
     DoublyLinkedList<T> list;
 
 public:
-    using ConstIterator = typename DoublyLinkedList<T>::ConstIterator;
-    using Iterator = typename DoublyLinkedList<T>::Iterator;
-
     /**
      * @brief スタックのデータ数を取得する
      * @return データ数
@@ -28,33 +25,10 @@ public:
 
     /**
      * @brief スタックからデータをポップする
+     * @param data ポップしたデータを格納する変数
      * @return ポップが成功するとtrue、リストが空だとfalse
      */
-    bool pop();
-
-    /**
-     * @brief スタックの先頭イテレータを取得する
-     * @return 先頭イテレータ
-     */
-    Iterator GetBegin();
-
-    /**
-     * @brief スタックの先頭コンストイテレータを取得する
-     * @return 先頭コンストイテレータ
-     */
-    ConstIterator GetBeginConst() const;
-
-    /**
-     * @brief スタックの終端イテレータを取得する
-     * @return 終端イテレータ
-     */
-    Iterator GetEnd();
-
-    /**
-     * @brief スタックの終端コンストイテレータを取得する
-     * @return 終端コンストイテレータ
-     */
-    ConstIterator GetEndConst() const;
+    bool pop(T& data);
 };
 
 #include "Stack.inl"

@@ -10,29 +10,11 @@ bool Stack<T>::push(const T& data) {
 }
 
 template<typename T>
-bool Stack<T>::pop() {
+bool Stack<T>::pop(T& data) {
     if (list.GetDataNum() == 0) return false;
-
-    bool success = list.Erase(--list.GetEnd());
+    
+    auto it = --list.GetEnd();
+    data = *it;
+    bool success = list.Erase(it);
     return success;
-}
-
-template<typename T>
-typename Stack<T>::Iterator Stack<T>::GetBegin() {
-    return list.GetBegin();
-}
-
-template<typename T>
-typename Stack<T>::ConstIterator Stack<T>::GetBeginConst() const {
-    return list.GetBegin();
-}
-
-template<typename T>
-typename Stack<T>::Iterator Stack<T>::GetEnd() {
-    return list.GetEnd();
-}
-
-template<typename T>
-typename Stack<T>::ConstIterator Stack<T>::GetEndConst() const {
-    return list.GetEnd();
 }
