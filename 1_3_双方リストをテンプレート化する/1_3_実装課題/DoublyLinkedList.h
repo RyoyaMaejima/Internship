@@ -19,7 +19,7 @@ private:
 
         /**
          * @brief コンストラクタ
-         * @tparam rd 格納するデータ
+         * @param rd 格納するデータ
          */
         Node(const T& rd);
     };
