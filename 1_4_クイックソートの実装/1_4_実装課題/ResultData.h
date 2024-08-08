@@ -61,13 +61,3 @@ bool compareUsernameAs(const ResultData& a, const ResultData& b) {
 bool compareUsernameDs(const ResultData& a, const ResultData& b) {
     return a.username > b.username;
 }
-
-/**
-* @brief スコアに基づいて昇順にソートするための比較関数
-* @param a 1つ目のResultDataオブジェクト
-* @param b 2つ目のResultDataオブジェクト
-* @return aのスコアがbのスコアより小さい場合にtrue
-*/
-bool compareScore(const ResultData& a, const ResultData& b) {
-    return a.score < b.score;
-}
