@@ -25,6 +25,7 @@ public:
 
     /**
      * @brief キューからデータをデキューする
+     * @param data デキューしたデータを格納する変数
      * @return デキューが成功するとtrue、リストが空だとfalse
      */
     bool dequeue(T& data);
