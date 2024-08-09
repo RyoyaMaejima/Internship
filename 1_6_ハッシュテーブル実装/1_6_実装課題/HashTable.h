@@ -50,7 +50,7 @@ public:
      * @param value ’Tõ‚µ‚½’l‚ğŠi”[‚·‚é•Ï”
      * @return ƒL[‚ªŒ©‚Â‚©‚ê‚ÎtrueAŒ©‚Â‚©‚ç‚È‚¯‚ê‚Îfalse
      */
-    bool Search(const K& key, V& value);
+    bool Search(const K& key, V& value) const;
 };
 
 #include "HashTable.inl"

@@ -33,10 +33,10 @@ bool HashTable<K, V, HF, BucketSize>::Erase(const K& key) {
 }
 
 template<typename K, typename V, typename HF, size_t BucketSize>
-bool HashTable<K, V, HF, BucketSize>::Search(const K& key, V& value) {
+bool HashTable<K, V, HF, BucketSize>::Search(const K& key, V& value) const {
     size_t index = hashFunction(key);
-    DoublyLinkedList<Pair<K, V>>& bucket = table[index];
-    for (auto it = bucket.GetBegin(); it != bucket.GetEnd(); ++it) {
+    const DoublyLinkedList<Pair<K, V>>& bucket = table[index];
+    for (auto it = bucket.GetBeginConst(); it != bucket.GetEndConst(); ++it) {
         if ((*it).key == key) {
             value = (*it).value;
             return true;
