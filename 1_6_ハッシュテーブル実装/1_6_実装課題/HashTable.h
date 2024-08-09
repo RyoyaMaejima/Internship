@@ -14,7 +14,7 @@ template<typename K, typename V, typename HF, size_t BucketSize>
 class HashTable {
 private:
     DoublyLinkedList<Pair<K, V>> table[BucketSize];    /**< チェイン式ハッシュテーブル */
-    HF hashFunction;    /**< チェイン式ハッシュテーブル */
+    HF hashFunction;    /**< ハッシュ関数 */
     size_t dataNum;    /**< データ数 */
 
 public:
