@@ -8,24 +8,24 @@ size_t HashTable<K, V, HF, BucketSize>::GetDataNum() const {
 
 template<typename K, typename V, typename HF, size_t BucketSize>
 bool HashTable<K, V, HF, BucketSize>::Insert(const K& key, const V& value) {
-    size_t index = hashFunction(key);
+    size_t index = hashFunction(key) % BucketSize;
     DoublyLinkedList<Pair<K, V>>& bucket = table[index];
     for (auto it = bucket.GetBegin(); it != bucket.GetEnd(); ++it) {
         if ((*it).key == key) return false;
     }
     bool success = bucket.Insert(bucket.GetEnd(), Pair<K, V>(key, value));
-    ++dataNum;
+    if (success) ++dataNum;
     return success;
 }
 
 template<typename K, typename V, typename HF, size_t BucketSize>
 bool HashTable<K, V, HF, BucketSize>::Erase(const K& key) {
-    size_t index = hashFunction(key);
+    size_t index = hashFunction(key) % BucketSize;
     DoublyLinkedList<Pair<K, V>>& bucket = table[index];
     for (auto it = bucket.GetBegin(); it != bucket.GetEnd(); ++it) {
         if ((*it).key == key) {
             bool success = bucket.Erase(it);
-            --dataNum;
+            if (success) --dataNum;
             return success;
         }
     }
@@ -34,7 +34,7 @@ bool HashTable<K, V, HF, BucketSize>::Erase(const K& key) {
 
 template<typename K, typename V, typename HF, size_t BucketSize>
 bool HashTable<K, V, HF, BucketSize>::Search(const K& key, V& value) const {
-    size_t index = hashFunction(key);
+    size_t index = hashFunction(key) % BucketSize;
     const DoublyLinkedList<Pair<K, V>>& bucket = table[index];
     for (auto it = bucket.GetBeginConst(); it != bucket.GetEndConst(); ++it) {
         if ((*it).key == key) {
